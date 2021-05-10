@@ -1,0 +1,40 @@
+<div class="uk-container uk-margin-small">
+    {{> title-card}}
+</div>
+
+<div class="uk-flex uk-flex-center uk-flex-middle uk-grid-small" uk-grid>
+    {{> welcome-menu }}
+</div>
+
+
+<div class="uk-container uk-margin">
+  <div class="uk-child-width-expand uk-flex-center uk-flex-middle uk-text-center" uk-grid>
+    <div>
+      <div class="uk-card uk-card-default uk-card-body uk-box-shadow-large">
+        <h3 class="uk-card-title uk-text-center">Welcome back!</h3>
+        <form action="/login" method="POST">
+          <div class="uk-margin uk-text-left">
+            <label class="uk-form-label" for="form-stacked-text">Email</label>
+            <div class="uk-inline uk-width-1-1">
+              <span class="uk-form-icon" uk-icon="icon: mail"></span> <input class="uk-input uk-form-large" type="text"
+                                                                             name="email">
+            </div>
+          </div>
+          <div class="uk-margin">
+            <div class="uk-inline uk-width-1-1">
+              <span class="uk-form-icon" uk-icon="icon: lock"></span> <input class="uk-input uk-form-large"
+                                                                             type="password" name="password">
+            </div>
+          </div>
+          <div class="uk-margin">
+            <button class="uk-button uk-button-primary uk-button-large uk-width-1-1">Login</button>
+          </div>
+          <div class="uk-text-left uk-text-small"></div>
+        </form>
+        {{> error }}
+      </div>
+      </div>
+          <img width="800" src="images/main page image.jpg">
+      </div>
+  </div>
+</div>

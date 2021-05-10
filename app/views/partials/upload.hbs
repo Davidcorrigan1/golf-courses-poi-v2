@@ -1,0 +1,14 @@
+<div class="uk-card-small uk-card-default uk-card-body">
+    <h3 class="uk-card-title">Image Upload for {{course.courseName}}</h3>
+    <form class="uk-form-horizontal" action="/uploadFile/{{course._id}}" method="POST" enctype="multipart/form-data">
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-horizontal-text">Select Image</label>
+            <div class="uk-form-controls">
+                <input type="file" class="uk-input" name="imagefile" accept="image/png, image/jpeg">
+            </div>
+            <div>
+                <input type="submit" value="Upload" class="uk-button uk-button-default">
+            </div>
+        </div>
+    </form>
+</div>

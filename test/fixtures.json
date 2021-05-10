@@ -1,0 +1,153 @@
+{
+  "golfPOIService": "http://localhost:4000",
+  "users": [
+    {
+      "firstName": "Test1 FirstName",
+      "lastName": "Test1 LastName",
+      "email": "test1Email@gmail.com",
+      "password": "secret",
+      "adminUser": true,
+      "loginCount": 0,
+      "lastLoginDate": "2021-05-05"
+    },
+    {
+      "firstName": "Test2 FirstName",
+      "lastName": "Test2 LastName",
+      "email": "test2Email@gmail.com",
+      "password": "secret",
+      "adminUser": false,
+      "loginCount": 0,
+      "lastLoginDate": "2021-05-05"
+    }
+  ],
+  "locationCategories" : [
+    {
+      "validCounties": [
+        "Wexford",
+        "Wicklow",
+        "Dublin",
+        "Kildare",
+        "Meath",
+        "Carlow",
+        "Kilkenny"
+      ],
+      "province": "Leinster"
+    },
+    {
+      "validCounties" : [
+        "Cork",
+        "Kerry",
+        "Waterford",
+        "Clare",
+        "Tipperary"
+      ],
+      "province" : "Munster"
+    },
+    {
+      "validCounties" : [
+        "Mayo",
+        "Galway",
+        "Sligo",
+        "Leitrim",
+        "Roscommon"
+      ],
+      "province" : "Connaught"
+    }
+  ],
+  "golfPOIs": [
+    {
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          -9.6721,
+          51.8751
+        ]
+      },
+      "relatedImages": [],
+      "courseName": "Test 2 Course",
+      "courseDesc": "Test Course 2 description"
+    },
+    {
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          -9.6721,
+          51.8751
+        ]
+      },
+      "relatedImages": [],
+      "courseName": "Test 3 Course",
+      "courseDesc": "Test Course 3 description"
+    },
+    {
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          -9.6721,
+          51.8751
+        ]
+      },
+      "relatedImages": [],
+      "courseName": "Test 4 Course",
+      "courseDesc": "Test Course 4 description"
+    }
+  ],
+  "newLocationCategory": {
+    "validCounties" : [
+      "Donegal",
+      "Antrim",
+      "Derry",
+      "Tyrone",
+      "Fermanagh",
+      "Monaghan"
+    ],
+    "province" : "Ulster"
+  },
+  "newUser": {
+    "firstName": "Test3 FirstName",
+    "lastName": "Test3 LastName",
+    "email": "test3Email@gmail.com",
+    "password": "secret",
+    "adminUser": true,
+    "loginCount": 0,
+    "lastLoginDate": "2021-05-05"
+  },
+  "newGolfPOI": {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.6721,
+        51.8751
+      ]
+    },
+    "relatedImages": [],
+    "courseName": "Test 1 Course",
+    "courseDesc": "Test Course 1 description"
+  },
+  "updateGolfPOI": {
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -8.6721,
+        50.8751
+      ]
+    },
+    "relatedImages": [],
+    "courseName": "Update 1 Course",
+    "courseDesc": "Update Course 1 description",
+    "province": "UpdateProvince"
+  },
+  "updateLocationCategory": {
+    "validCounties" : [
+      "Update1",
+      "Update2"
+    ],
+    "province" : "UpdateProvince"
+  },
+  "relatedImages" : [
+    "gstlecvc980ygarxlnbf",
+    "izdmumgevhbo3knoa2q0",
+    "gwds5r7ifitekxpokvqf",
+    "lebmjfglfidxp56d8ijd"
+  ]
+}

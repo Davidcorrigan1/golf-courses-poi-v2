@@ -1,0 +1,33 @@
+<div class="uk-container uk-margin-small">
+    {{> title-card subTitle=course.courseName}}
+</div>
+
+<div class="uk-container uk-margin-small">
+    {{#if currentWeather}}
+        {{> course-weather}}
+    {{/if}}
+</div>
+
+<div class="uk-flex uk-flex-center uk-flex-middle uk-grid-small" uk-grid>
+    {{#if adminUser}}
+        {{> main-admin-menu }}
+    {{else}}
+        {{> main-menu }}
+    {{/if}}
+</div>
+
+<div class="uk-container uk-margin-small">
+    <div class="uk-child-width-expand uk-flex-center uk-flex-middle uk-text-center " uk-grid>
+        <div class="uk-width-expand@m">
+            {{> course-update}}
+        </div>
+    </div>
+</div>
+<div class="uk-container uk-padding-small">
+    <div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: .uk-card">
+        {{#each images}}
+            {{> courseImages}}
+        {{/each}}
+    </div>
+    {{> error }}
+</div>

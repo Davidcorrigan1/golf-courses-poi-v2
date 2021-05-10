@@ -1,0 +1,30 @@
+<div class="uk-margin uk-width-1xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+    <table class="uk-table">
+        <caption>
+            <h3>List of Current Registered Users</h3>
+        </caption>
+        <thead>
+        <th>Forename</th>
+        <th>Surname</th>
+        <th>Email Address</th>
+        <th>Last Logged Date</th>
+        <th>Logins</th>
+        <th>Delete</th>
+        </thead>
+        <tbody class="uk-text-left">
+        {{#each userArray}}
+            <tr>
+                <td><a href="/userUpdate/{{_id}}" >{{firstName}}</td>
+                <td>{{lastName}}</td>
+                <td>{{email}}</td>
+                <td>{{lastLoginDate}}</td>
+                <td>{{loginCount}}</td>
+                <td>
+                    <a href="/deleteUser/{{_id}}" >
+                        <i class="far fa-trash-alt"></i></a>
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</div>

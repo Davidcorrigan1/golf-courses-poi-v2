@@ -1,0 +1,282 @@
+{
+  "users": {
+    "_model": "User",
+    "user1": {
+      "firstName": "David",
+      "lastName": "Corrigan",
+      "email": "davidcorrigan1@gmail.com",
+      "password": "Pass1976",
+      "adminUser": true,
+      "loginCount": 2,
+      "lastLoginDate": "2021-05-05"
+    },
+    "user2": {
+      "firstName": "Joshua",
+      "lastName": "Corrigan",
+      "email": "joshuacorrigan@gmail.com",
+      "password": "Pass1976",
+      "adminUser": true,
+      "loginCount": 2,
+      "lastLoginDate": "2021-05-05"
+    },
+    "user3": {
+      "firstName": "Hugh",
+      "lastName": "Corrigan",
+      "email": "hughcorrigan1@gmail.com",
+      "password": "Pass1976",
+      "adminUser": false,
+      "loginCount": 2,
+      "lastLoginDate": "2021-05-05"
+    }
+  },
+  "locationCategories": {
+    "_model": "LocationCategory",
+    "category1": {
+      "validCounties": [
+        "Wexford",
+        "Wicklow",
+        "Dublin",
+        "Kildare",
+        "Meath",
+        "Carlow",
+        "Kilkenny"
+      ],
+      "province": "Leinster",
+      "lastUpdatedBy": "->users.user1"
+    },
+    "category2": {
+      "validCounties": [
+        "Cork",
+        "Kerry",
+        "Waterford",
+        "Clare",
+        "Tipperary"
+      ],
+      "province": "Munster",
+      "lastUpdatedBy": "->users.user2"
+    },
+    "category3": {
+      "validCounties": [
+        "Mayo",
+        "Galway",
+        "Sligo",
+        "Leitrim",
+        "Roscommon"
+      ],
+      "province": "Connaught",
+      "lastUpdatedBy": "->users.user1"
+    },
+    "category4": {
+      "validCounties": [
+        "Donegal",
+        "Antrim",
+        "Derry",
+        "Tyrone",
+        "Fermanagh",
+        "Monaghan"
+      ],
+      "province": "Ulster",
+      "lastUpdatedBy": "->users.user2"
+    }
+  },
+  "golfPOIs": {
+    "_model": "GolfPOI",
+    "course1": {
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          -9.6721,
+          51.8751
+        ]
+      },
+      "relatedImages": [
+        "gstlecvc980ygarxlnbf",
+        "izdmumgevhbo3knoa2q0",
+        "gwds5r7ifitekxpokvqf",
+        "lebmjfglfidxp56d8ijd"
+      ],
+      "courseName": "Ring of Kerry Golf Course",
+      "courseDesc": "The crowning achievement of a lifetime’s work by visionary course architects Eddie Hackett and Ron Kirby,\r\n                        there are few golfing experiences in Europe to rival The Ring of Kerry.\r\n                        \r\n                        Located near Killarney in the golfers paradise of South-West Ireland,\r\n                        The Ring of Kerry ranks highly amongst the ‘must play’ courses in the American golfers bucket list, alongside Tralee and Waterville.\r\n                        \r\n                        Its unique topography and construction form a hybrid course of heathland and parkland holes.\r\n                        The sand-based fairways and firm USGA Standard greens also introduce some links golf feel to the play.\r\n                        \r\n                        Overlooking the spectacular scenery of Kenmare Bay, The Caha and Beara Mountains guide the view out along\r\n                        The Wild Atlantic Way towards the ocean from every green.\r\n                        \r\n                        This is a world-class course in a stunning setting that provides some of the finest golf Ireland has to offer.",
+      "lastUpdatedBy": "->users.user2",
+      "category": "->locationCategories.category2"
+    },
+    "course2": {
+      "location" : {
+        "type" : "Point",
+        "coordinates" : [
+          -6.4665,
+          52.3258
+        ]
+      },
+      "relatedImages" : [
+        "ucpfpx4r9eih4rubch88",
+        "qh4h8itq5rcttajzkyar"
+      ],
+      "courseName" : "Wexford Golf Club",
+      "courseDesc" : "We have a fantastic course, lovely clubhouse, restaurant and pro-shop.  Thank you to Liam and his team in the pro-shop, whose support and advice is always welcome.  Thank you to Jake and the course staff who have made the course one to be proud of throughout the year.  Thanks to our “Garden Angels” for the wonderful contribution they also make to our course each year.  Thank you to the bar, catering and office staff for their commitment to the Club.  We encourage all our members to give their support and to enjoy the bar and restaurant again when it is possible to do so.  We look forward to maintaining and developing these facilities.",
+      "lastUpdatedBy" : "->users.user1",
+      "category" : "->locationCategories.category1"
+    },
+    "course3":{
+      "location" : {
+        "type" : "Point",
+        "coordinates" : [
+          -9.06,
+          53.26
+        ]
+      },
+      "relatedImages" : [
+        "f2cadu7szdkamawl4fcy",
+        "sima96t0c50p2qks8h0m"
+      ],
+      "courseName" : "Salthill Golf Course",
+      "courseDesc" : "Located in the famous seaside resort of Salthill Galway Golf Club offers the discerning visitor a Championship Standard 18 hole Parkland Course with spectacular views over Galway Bay, the Burren and Aran Islands. This fine of test of golf is 5,974 metres long and plays to a par of 70 with a standard scratch of 72 off the back tees. Access to the first four holes which run alongside Galway Bay is via an underground pedestrian tunnel. With an abundance of mature trees, elevated and tiered greens and plenty of wild gorse to punish the wayward shot you must be accurate off the tee, have a good short game and your putter to be hot to score well - playing to your handicap here, your game is in good shape!! Other golfing facilities include putting green, short game practice area, swing room, range and driving nets whilst our resident PGA Professional David Mortimer and his team are on hand to offer advice and assistance on all aspects of your visit and game.",
+      "lastUpdatedBy" : "->users.user2",
+      "category" : "->locationCategories.category3"
+    },
+    "course4": {
+      "location" : {
+        "type" : "Point",
+        "coordinates" : [
+          -6.329,
+          52.8802
+        ]
+      },
+      "relatedImages" : [
+        "mdiooko5toqmbqzwsuoj",
+        "xyivmabizmpc9upuwxed"
+      ],
+      "courseName" : "Macreddin Golf Course ",
+      "courseDesc" : "The Macreddin Valley is an area of outstanding natural beauty, tucked away at the southern reaches of the Wicklow Mountains. In the heart of the valley lies Macreddin Golf, a magnificent 18 hole, Par 72 golf course set on 160 acres of tranquil woodland splendour.  Macreddin is the first course ever designed by Irish professional golfer and Ryder Cup Captain Paul McGinley. After years of competing at the peak of the game, playing against the world’s elite golfers and across the most acclaimed golf courses, Paul brought all his experience to bear in creating a course that oozes class and quality.",
+      "lastUpdatedBy" : "->users.user1",
+      "category" : "->locationCategories.category1"
+    },
+    "course5": {
+      "location" : {
+        "type" : "Point",
+        "coordinates" : [
+          53.814,
+          -9.562
+        ]
+      },
+      "relatedImages" : [
+        "jgaujdmd1emgg4we947x",
+        "kehpaxmwveg7jmbf2jii"
+      ],
+      "courseName" : "Westport Golf Club",
+      "courseDesc" : "Westport Golf Club is one of Ireland’s finest parkland courses. A highly regarded championship venue, the Club is the three-time host of the Irish Amateur Close Championship, the Smurfit Irish PGA Championship, and the 2019 AIG Cups & Shields All-Ireland Finals. Located a 5-minute drive from the town, the course is set in the scenic splendour of 260 acres of undulating parklands on the shores of Clew Bay with breath-taking views of Croagh Patrick. The club boasts floodlit driving range, a two-hole pitching green and putting green, as well as a 9-hole pitch and putt course.",
+      "lastUpdatedBy" : "->users.user2",
+      "category" : "->locationCategories.category3"
+    },
+    "course6": {
+      "location" : {
+        "type" : "Point",
+        "coordinates" : [
+          -8.354,
+          51.901
+        ]
+      },
+      "relatedImages" : [],
+      "courseName" : "Cork Golf Course",
+      "courseDesc" : "Cork GC was formed in 1888 by prominent Cork businessmen. The first location was at Rathcooney Hill above Glanmire village. Thereafter a number of moves were made while searching for a better site. The present location at Little Island was chosen in 1897 when Messrs Maudslay, J. H. Gubbins and Sharman Crawford spotted its potential while sailing in the adjacent estuary. Initially the members laid out just four holes along the shore amongst what were still working limestone quarries, owned by the local Cantillon family. To allow play, many craters had to be filledwith waste stones and top soil, producing a fast draining, links-like turf; still an attractive feature to this day. A club house was built shortly afterwards near the present eight tee.",
+      "lastUpdatedBy" : "->users.user1",
+      "category" : "->locationCategories.category2"
+    },
+    "course7": {
+      "location" : {
+        "type" : "Point",
+        "coordinates" : [
+          -9.095,
+          53.26
+        ]
+      },
+      "relatedImages" : [
+        "ucavx3htmyoqnajadxuh"
+      ],
+      "courseName" : "Galway Golf Course",
+      "courseDesc" : "This fine of test of golf is 5,974 metres long and plays to a par of 70 with a standard scratch of 72 off the back tees. Access to the first four holes which run alongside Galway Bay is via an underground pedestrian tunnel. With an abundance of mature trees, elevated and tiered greens and plenty of wild gorse to punish the wayward shot you must be accurate off the tee, have a good short game and your putter to be hot to score well - playing to your handicap here, your game is in good shape!!  Other golfing facilities include putting green, short game practice area, swing room, range and driving nets whilst our resident PGA Professional David Mortimer and his team are on hand to offer advice and assistance on all aspects of your visit and game.",
+      "lastUpdatedBy" : "->users.user2",
+      "category" : "->locationCategories.category3"
+    },
+    "course8": {
+      "location" : {
+        "type" : "Point",
+        "coordinates" : [
+          -8.627,
+          52.615
+        ]
+      },
+      "relatedImages" : [
+        "q8vpuqmzyrhi7h4edr0i"
+      ],
+      "courseName" : "Limerick Golf Course",
+      "courseDesc" : "Limerick Golf Club is located at Ballyclough, on the southern outskirts of Limerick City and is one of the oldest golf clubs in Ireland, founded in the same year as the Golfing Union of Ireland, 1891. The course and clubhouse are located on the original site of Roxboro Castle and grounds. The club boasts a mature parkland course, with a number of holes designed by Dr. Alister McKenzie, architect of Lahinch and Augusta National, and others by John D. Harris. The current layout measures 6500 yards in length and has a par of 72. Limerick has one of the largest memberships in the country with over 1300 members.",
+      "lastUpdatedBy" : "->users.user1",
+      "category" : "->locationCategories.category2"
+    },
+    "course9": {
+      "location" : {
+        "type" : "Point",
+        "coordinates" : [
+          -6.078,
+          53.095
+        ]
+      },
+      "relatedImages" : [
+        "d9tjlvlwpqmi4ehbub48"
+      ],
+      "courseName" : "Druids Glen Golf Course",
+      "courseDesc" : "Welcome to Druids Glen Hotel & Golf Resort - the perfect location for a golfing break in Ireland, where you can tee off on a course of champions in surroundings rich in history and prestige. Whether you are staying at our luxury Wicklow hotel or visiting for the day, our two championship golf courses allow our golfing guests enjoy varied play over equally exhilarating landscapes - both of which are renowned as being amongst the finest, most challenging and most enjoyable in Europe.",
+      "lastUpdatedBy" : "->users.user2",
+      "category" : "->locationCategories.category1"
+    },
+    "course10": {
+      "location" : {
+        "type" : "Point",
+        "coordinates" : [
+          -6.123,
+          53.497
+        ]
+      },
+      "relatedImages" : [
+        "kwgemmcic82mnffojh5h"
+      ],
+      "courseName" : "Portmarnock Golf Club",
+      "courseDesc" : "Within a picturesque curve of coastline, 10 miles to the north of Dublin City and only a 15-minute drive from Dublin Airport, Portmarnock Golf Club sits majestically on a narrow tongue of shallow duneland. And as a measure of its enduring quality, it remains one of the most respected venues in world golf.   No other Irish course has been graced by so many distinguished players in a rich history encompassing a broad sweep of significant events. It is where Arnold Palmer and Sam Snead successfully followed its serpentine route through classic linkland on their way to victory in the 1960 Canada Cup. And it is where another generation of Americans, including Phil Mickelson and David Duval, secured a memorable Walker Cup triumph in 1991.   ",
+      "lastUpdatedBy" : "->users.user1",
+      "category" : "->locationCategories.category1"
+    },
+    "course11": {
+      "location" : {
+        "type" : "Point",
+        "coordinates" : [
+          -8.563,
+          54.31
+        ]
+      },
+      "relatedImages" : [
+        "wirb1qzv0e4njxmmdgkg"
+      ],
+      "courseName" : "Sligo Golf Club",
+      "courseDesc" : "This world famous golf course in Rosses Point offers an excellent challenge. The traditional links layout, designed by Harry Colt, utilizes the natural contours of the dune-covered landscape rather than moving large amounts of earth during its design. The end result is a course filled with dramatic undulations, elevated tees, and raised plateau greens.  County Sligo Golf Club extends a special welcome to visitors all year round. Tee times are available each day and may be booked on an individual or group basis.",
+      "lastUpdatedBy" : "->users.user2",
+      "category" : "->locationCategories.category3"
+    },
+    "course12": {
+      "location" : {
+        "type" : "Point",
+        "coordinates" : [
+          -6.635,
+          55.199
+        ]
+      },
+      "relatedImages" : [
+        "fq7itlrgm3nyptghdrpq"
+      ],
+      "courseName" : "Royal Portrush Golf Club",
+      "courseDesc" : "Royal Portrush Golf Club is a private golf club in County Antrim, Northern Ireland. The 36-hole club has two links courses, the Dunluce Links (the championship course) and the Valley Links. The former is one of the courses on the rota of the Open Championship and last hosted the tournament in 2019.  In 1951, Royal Portrush first hosted the Open Championship, the oldest of golf's major championships; it was the first Open not held on the island of Great Britain. The Open returned to Portrush in 2019, and it will host twice more by 2040.[1] It also hosted the Irish Open in 2012, the first in Northern Ireland since 1953.[2]",
+      "lastUpdatedBy" : "->users.user1",
+      "category" : "->locationCategories.category4"
+    }
+  }
+}

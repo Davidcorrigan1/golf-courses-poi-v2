@@ -1,0 +1,18 @@
+<div class="uk-card uk-card-default uk-padding-small uk-visible@m">
+    <table class="uk-table">
+        <thead>
+        <th>Weather Overview</th>
+        <th>Current Temperature (C)</th>
+        <th>Wind Speed (M/S)</th>
+        <th>Humidity</th>
+        </thead>
+        <tbody class="uk-text-left">
+            <tr>
+                <td>{{currentWeather.weather.[0].description}}</td>
+                <td>{{currentWeather.main.feels_like}}</td>
+                <td>{{currentWeather.wind.speed}}</td>
+                <td>{{currentWeather.main.humidity}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

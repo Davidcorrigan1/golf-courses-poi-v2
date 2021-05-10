@@ -1,0 +1,26 @@
+<div class="uk-margin uk-width-1xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+    <table class="uk-table">
+        <caption>
+            <h3>Current Category Entries</h3>
+        </caption>
+        <thead>
+        <th>Province Name</th>
+        <th>List of Valid Counties</th>
+        <th>Updated By</th>
+        <th>Delete</th>
+        </thead>
+        <tbody class="uk-text-left">
+        {{#each categories}}
+            <tr>
+                <td>{{province}}</td>
+                <td>{{validCounties}}</td>
+                <td>{{lastUpdatedBy.firstName}} {{lastUpdatedBy.lastName}}</td>
+                <td>
+                    <a href="/deleteCategory/{{_id}}" >
+                        <i class="far fa-trash-alt"></i>
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,36 @@
+{
+  "name": "golf-courses-poi-2021",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/boom": "^9.1.1",
+    "@hapi/cookie": "^11.0.2",
+    "@hapi/hapi": "^20.1.0",
+    "@hapi/inert": "^6.0.3",
+    "@hapi/joi": "^17.1.1",
+    "@hapi/vision": "^6.0.1",
+    "cloudinary": "^1.25.0",
+    "dotenv": "^8.2.0",
+    "handlebars": "^4.7.6",
+    "lodash": "^4.17.21",
+    "mais-mongoose-seeder": "^1.0.7",
+    "mongoose": "^5.11.15"
+  },
+  "devDependencies": {
+    "axios": "^0.21.1",
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2",
+    "nyc": "^15.1.0",
+    "prettier": "^2.2.1"
+  },
+  "prettier": {
+    "printWidth": 120
+  }
+}

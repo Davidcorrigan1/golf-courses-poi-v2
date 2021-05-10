@@ -1,0 +1,34 @@
+<div class="uk-margin uk-width-1xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+  <table class="uk-table">
+
+    <thead>
+      <th>Course Name</th>
+      <th>Course Description</th>
+      <th>Province</th>
+      <th>Updated By</th>
+      <th>Add Image</th>
+      <th>Delete</th>
+    </thead>
+    <tbody class="uk-text-left">
+      {{#each golfCourses}}
+        <tr>
+          <td>
+            <a href="/course/{{_id}}" >
+                {{courseName}}</td>
+          <td>{{courseDesc}}</td>
+          <td><a href="/reportCategory/{{category._id}}" >
+              {{category.province}}</td>
+          <td>{{lastUpdatedBy.firstName}} {{lastUpdatedBy.lastName}}</td>
+          <td>
+              <a href="/addImage/{{_id}}" >
+                  <span uk-icon="image"></span></a>
+          </td>
+          <td>
+              <a href="/deleteCourse/{{_id}}" >
+                  <i class="far fa-trash-alt"></i></a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

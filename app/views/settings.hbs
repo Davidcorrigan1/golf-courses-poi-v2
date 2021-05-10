@@ -1,0 +1,25 @@
+<div class="uk-container uk-margin-small">
+    {{> title-card}}
+</div>
+<div class="uk-flex uk-flex-center uk-flex-middle uk-grid-small" uk-grid>
+    {{#if adminUser}}
+        {{> main-admin-menu }}
+    {{else}}
+        {{> main-menu }}
+    {{/if}}
+</div>
+
+<div class="uk-container uk-margin">
+  <div class="uk-child-width-expand uk-flex-center uk-flex-middle uk-text-center" uk-grid>
+    <div class="uk-width-auto@m">
+      <img width="300" src="images/golfcourse1.jpg">
+    </div>
+    <div class="uk-width-expand@m">
+      <div class="uk-card uk-card-default uk-width-xlarge uk-card-body uk-box-shadow-large">
+        <h3 class="uk-card-title uk-text-center">Your Details: </h3>
+        {{> settings-form}}
+        {{> error }}
+      </div>
+    </div>
+  </div>
+</div>

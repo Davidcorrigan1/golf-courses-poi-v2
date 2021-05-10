@@ -1,0 +1,41 @@
+<div>
+    <form class="uk-form-stacked" action="/userUpdate/{{user._id}}" method="POST">
+        <fieldset class="uk-fieldset">
+            <div class="uk-margin uk-fieldset uk-text-left">
+                <label class="uk-form-label" for="form-stacked-text">Forename</label>
+                <div class="uk-inline uk-width-1-1">
+                    <span class="uk-form-icon" uk-icon="icon: dribbble"></span>
+                    <input class="uk-input uk-form-large" type="text" name="firstName" value="{{user.firstName}}">
+                </div>
+            </div>
+            <div class="uk-margin uk-fieldset uk-text-left">
+                <label class="uk-form-label" for="form-stacked-text">Surname</label>
+                <div class="uk-inline uk-width-1-1">
+                    <span class="uk-form-icon" uk-icon="icon: dribbble"></span>
+                    <input class="uk-input uk-form-large" type="text" name="lastName" value="{{user.lastName}}">
+                </div>
+            </div>
+
+            <div class="uk-margin uk-fieldset uk-text-left">
+                <label class="uk-form-label" for="form-stacked-text">Email Address</label>
+                <div class="uk-inline uk-width-1-1">
+                    <span class="uk-form-icon" uk-icon="icon: dribbble"></span>
+                    <input class="uk-input uk-form-large" type="text" name="email" value="{{user.email}}">
+                </div>
+            </div>
+
+            <div class="uk-margin uk-fieldset uk-text-left">
+                <label class="uk-form-label" for="form-stacked-text">Password</label>
+                <div class="uk-inline uk-width-1-1">
+                    <span class="uk-form-icon" uk-icon="icon: dribbble"></span>
+                    <input class="uk-input uk-form-large" type="text" name="password" value="{{user.password}}">
+                </div>
+            </div>
+
+            <div class="uk-margin uk-text-left">
+                <button class="uk-button uk-button-primary uk-button-large uk-width-1-6">Save </button>
+            </div>
+        </fieldset>
+    </form>
+    {{> error }}
+</div>

@@ -1,0 +1,51 @@
+<div>
+    <form class="uk-form-stacked" action="/courseUpdate/{{course._id}}" method="POST">
+        <fieldset class="uk-fieldset">
+        <div class="uk-margin uk-fieldset uk-text-left">
+            <label class="uk-form-label" for="form-stacked-text">Update Course Name</label>
+            <div class="uk-inline uk-width-1-1">
+                <span class="uk-form-icon" uk-icon="icon: dribbble"></span>
+                <input class="uk-input uk-form-large" type="text" name="courseName" value="{{course.courseName}}">
+            </div>
+        </div>
+        <div class="uk-margin uk-text-left">
+            <label class="uk-form-label" for="form-stacked-text">Enter Course Description</label>
+            <div class="uk-form-row">
+                <div class="uk-inline uk-width-1-1">
+                    <span class="uk-form-icon" uk-icon="icon: dribbble"></span>
+                    <textarea name="courseDesc" rows="10" class="uk-input uk-form-large" >{{course.courseDesc}}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-margin uk-text-left">
+        <label class="uk-form-label" for="form-stacked-text">Update Provinces</label>
+            <div class="uk-inline uk-width-1-6">
+                <div uk-select>
+                    <select class="uk-select" name="province">
+                        {{#each categories}}
+                            <option>{{province}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="uk-margin uk-text-left uk-width-2-6">
+            <label class="uk-form-label" for="form-stacked-text">latitude</label>
+            <div class="uk-width-1-6">
+                <span class="uk-form-icon" ></span>
+                <input class="uk-input uk-form-large" type="decimal" name="latitude" value="{{course.location.coordinates.[1]}}">
+            </div>
+            <label class="uk-form-label" for="form-stacked-text">longitude</label>
+            <div class="uk-width-1-6">
+                <span class="uk-form-icon" ></span>
+                <input class="uk-input uk-form-large" type="decimal" name="longitude" value="{{course.location.coordinates.[0]}}">
+            </div>
+        </div>
+        <div class="uk-margin uk-text-left">
+            <button class="uk-button uk-button-primary uk-button-large uk-width-1-6">Save </button>
+        </div>
+        </fieldset>
+    </form>
+    {{> error }}
+</div>

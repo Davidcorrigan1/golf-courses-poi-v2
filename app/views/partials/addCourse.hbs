@@ -1,0 +1,46 @@
+<div class="uk-margin uk-width-1xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large ">
+  <form class="uk-form-stacked uk-text-left" action="/addCourse" method="POST">
+    <div class="uk-grid uk-grid-stack">
+      <div class="uk-width-3-4@m">
+        <div class="uk-margin">
+          <label class="uk-form-label" for="form-stacked-text">Enter Course Name</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" id="form-stacked-text" type="text" name="courseName" placeholder="name" />
+          </div>
+        </div>
+        <div class="uk-margin">
+              <label class="uk-form-label" for="form-stacked-text">Enter Course Description</label>
+          <div class="uk-form-controls">
+              <input class="uk-input" id="form-stacked-text" type="text" name="courseDesc" placeholder="desc" />
+          </div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-text">Enter Longitude</label>
+            <div class="uk-form-controls">
+                <input class="uk-input" id="form-stacked-text" type="decimal" name="longitude" placeholder="0.00" />
+            </div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-text">Enter Latitude</label>
+            <div class="uk-form-controls">
+                <input class="uk-input" id="form-stacked-text" type="decimal" name="latitude" placeholder="0.00" />
+            </div>
+        </div>
+        <label class="uk-form-label" for="form-stacked-text">Provinces</label>
+        <div uk-select>
+              <select class="uk-select" name="province">
+                  <option value="" selected disabled hidden>Choose Province</option>
+                  {{#each categories}}
+                      <option>{{province}}</option>
+                  {{/each}}
+              </select>
+        </div>
+      </div>
+      <div class=" uk-width-1-4@m uk-position-center-right" >
+        <div class="uk-margin">
+          <button class="submit uk-button uk-button-primary uk-button-large uk-width-1-2">ADD</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
