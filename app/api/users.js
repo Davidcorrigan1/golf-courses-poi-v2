@@ -2,6 +2,7 @@
 
 const User = require('../models/user');
 const Boom = require("@hapi/boom");
+const utils = require('./utils.js');
 
 const Users = {
   authenticate: {
@@ -14,7 +15,8 @@ const Users = {
         } else if (user.password !== request.payload.password) {
           return Boom.unauthorized("Invalid password");
         } else {
-          return user;
+          const token = utils.createToken(user);
+          return h.response({ success: true, token: token }).code(201);
         }
       } catch (err) {
         return Boom.notFound("internal db failure");

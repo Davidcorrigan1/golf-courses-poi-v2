@@ -4,6 +4,7 @@ const assert = require("chai").assert;
 const GolfPOIService = require("./golfPOI-service");
 const fixtures = require("./fixtures.json");
 const _ = require("lodash");
+const utils = require("../app/api/utils.js");
 
 suite("User API tests", function () {
   let users = fixtures.users;
@@ -23,6 +24,22 @@ suite("User API tests", function () {
     const returnedUser = await golfPOIService.createUser(newUser);
     assert(_.some([returnedUser], newUser), "returnedUser must be a superset of newUser");
     assert.isDefined(returnedUser._id);
+  });
+
+  test("authenticate", async function () {
+    const returnedUser = await golfPOIService.createUser(newUser);
+    const response = await golfPOIService.authenticate(newUser);
+    assert(response.success);
+    assert.isDefined(response.token);
+  });
+
+  test("verify Token", async function () {
+    const returnedUser = await golfPOIService.createUser(newUser);
+    const response = await golfPOIService.authenticate(newUser);
+
+    const userInfo = utils.decodeToken(response.token);
+    assert.equal(userInfo.email, returnedUser.email);
+    assert.equal(userInfo.userId, returnedUser._id);
   });
 
   test("get user", async function () {

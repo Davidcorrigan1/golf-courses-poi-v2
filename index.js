@@ -5,10 +5,13 @@ const Inert = require("@hapi/inert");
 const Vision = require("@hapi/vision");
 const Handlebars = require("handlebars");
 const Cookie = require("@hapi/cookie");
+const Jwt = require('hapi-auth-jwt2');
 const Joi = require("@hapi/joi");
 require('./app/models/db');
 const ImageStore = require('./app/utils/imageStore');
+const utils = require("./app/api/utils.js");
 const env = require('dotenv');
+env.config();
 
 const credentials = {
   cloud_name: process.env.name,
@@ -31,14 +34,15 @@ async function init() {
   await server.register(Inert);
   await server.register(Vision);
   await server.register(Cookie);
+  await server.register(Jwt);
 
   ImageStore.configure(credentials);
 
-  server.validator(require("@hapi/joi"));
+  server.validator(Joi);
 
   server.views({
     engines: {
-      hbs: require("handlebars"),
+      hbs: Handlebars,
     },
     relativeTo: __dirname,
     path: "./app/views",
@@ -55,6 +59,12 @@ async function init() {
       isSecure: false
     },
     redirectTo: "/",
+  });
+
+  server.auth.strategy("jwt", "jwt", {
+    key: process.env.jwt_key,
+    validate: utils.validate,
+    verifyOptions: { algorithms: ["HS256"] },
   });
 
   server.auth.default("session");

@@ -5,7 +5,9 @@ const Boom = require("@hapi/boom");
 
 const LocationCategories = {
   find: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       const allCategories = await LocationCategory.find().populate("lastUpdatedBy").lean();
       return (allCategories);
@@ -13,7 +15,9 @@ const LocationCategories = {
   },
 
   findOne: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const category = await LocationCategory.findOne({ _id: request.params.id });
@@ -28,7 +32,9 @@ const LocationCategories = {
   },
 
   create: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       const newCategory = new LocationCategory(request.payload);
       const category = await newCategory.save();
@@ -40,7 +46,9 @@ const LocationCategories = {
   },
 
   deleteOne: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       const response = await LocationCategory.deleteOne({ _id: request.params.id });
       if (response.deletedCount == 1) {
@@ -51,7 +59,9 @@ const LocationCategories = {
   },
 
   deleteAll: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       await LocationCategory.remove({});
       return { success: true };
