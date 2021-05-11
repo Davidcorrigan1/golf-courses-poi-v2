@@ -8,7 +8,9 @@ const ImageStore = require("../utils/imageStore");
 
 const GolfPOIs = {
   find: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const golfPOI = await GolfPOI.find().populate("lastUpdatedBy").populate("category").lean();
@@ -20,7 +22,9 @@ const GolfPOIs = {
   },
 
   findOne: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const golfPOI = await GolfPOI.findOne({ _id: request.params.id });
@@ -35,7 +39,9 @@ const GolfPOIs = {
   },
 
   update: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const courseEdit = request.payload;
@@ -66,7 +72,6 @@ const GolfPOIs = {
         course.lastUpdatedBy = user._id;
 
         course.location.coordinates = courseEdit.location.coordinates;
-        console.log("Getting to inside save");
         await course.save()
 
         return h.response(course).code(201);
@@ -78,7 +83,9 @@ const GolfPOIs = {
   },
 
   create: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const newGolfPOI = new GolfPOI(request.payload);
@@ -94,7 +101,9 @@ const GolfPOIs = {
   },
 
   uploadImage: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const file = request.payload.imagefile;
@@ -117,7 +126,9 @@ const GolfPOIs = {
   },
 
   deleteImage: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function(request, h) {
       try {
         await ImageStore.deleteImage(request.params.id);
@@ -143,7 +154,9 @@ const GolfPOIs = {
   },
 
   deleteOne: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       const golfPOI = await GolfPOI.remove({ _id: request.params.id });
       if (golfPOI) {
@@ -154,7 +167,9 @@ const GolfPOIs = {
   },
 
   deleteAll: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       await GolfPOI.remove({});
       return { success: true };
