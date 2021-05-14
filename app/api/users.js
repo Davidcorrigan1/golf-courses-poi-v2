@@ -9,7 +9,7 @@ const Users = {
     auth: false,
     handler: async function (request, h) {
       try {
-        const user = await User.findOne({ email: request.payload.email });
+        const user = await User.findByEmail(request.payload.email);
         if (!user) {
           return Boom.unauthorized("User not found");
         } else if (user.password !== request.payload.password) {
@@ -25,7 +25,9 @@ const Users = {
   },
 
   find: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       const allUsers = await User.find().lean();
       return (allUsers);
@@ -33,7 +35,9 @@ const Users = {
   },
 
   findOne: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const user = await User.findOne({ _id: request.params.id });
@@ -43,6 +47,23 @@ const Users = {
         return user;
       } catch (err) {
         return Boom.notFound("No User with this id");
+      }
+    },
+  },
+
+  findByEmail: {
+    auth: {
+      strategy: "jwt",
+    },
+    handler: async function (request, h) {
+      try {
+        const user = await User.findByEmail(request.params.email);
+        if (!user) {
+          return Boom.notFound("No User with this email");
+        }
+        return user;
+      } catch (err) {
+        return Boom.notFound("No User with this email");
       }
     },
   },
@@ -60,7 +81,9 @@ const Users = {
   },
 
   update: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const user = await User.findOne({ _id: request.params.id });
@@ -85,7 +108,9 @@ const Users = {
   },
 
   deleteOne: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       const response = await User.deleteOne({ _id: request.params.id });
       if (response.deletedCount == 1) {
@@ -96,7 +121,9 @@ const Users = {
   },
 
   deleteAll: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       await User.remove({});
       return { success: true };

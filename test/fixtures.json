@@ -112,6 +112,15 @@
     "loginCount": 0,
     "lastLoginDate": "2021-05-05"
   },
+  "authUser": {
+    "firstName": "Auth FirstName",
+    "lastName": "Auth LastName",
+    "email": "AuthEmail@gmail.com",
+    "password": "secret",
+    "adminUser": true,
+    "loginCount": 0,
+    "lastLoginDate": "2021-05-05"
+  },
   "newGolfPOI": {
     "location": {
       "type": "Point",
