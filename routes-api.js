@@ -1,6 +1,7 @@
 const GolfPOIs = require('./app/api/golfPOIs');
 const Users = require('./app/api/users');
 const LocationCategory = require('./app/api/locationCategories');
+const WeatherAPI = require('./app/api/weatherAPI');
 const ImageStore = require('./app/api/imageStore');
 
 module.exports = [
@@ -15,6 +16,7 @@ module.exports = [
 
   { method: "GET", path: "/api/users", config: Users.find },
   { method: "GET", path: "/api/users/{id}", config: Users.findOne },
+  { method: "GET", path: "/api/users/email/{email}", config: Users.findByEmail },
   { method: "POST", path: "/api/users/update/{id}", config: Users.update },
   { method: "POST", path: "/api/users/authenticate", config: Users.authenticate },
   { method: "POST", path: "/api/users/create", config: Users.create },
@@ -29,4 +31,6 @@ module.exports = [
 
   { method: "GET", path: "/api/imageStore", config: LocationCategory.find },
   { method: "GET", path: "/api/imageStore/{idList}", config: ImageStore.getCourseImages },
+
+  { method: "GET", path: "/api/weatherAPI/{latitude}/{longitude}", config: WeatherAPI.getWeather },
 ];

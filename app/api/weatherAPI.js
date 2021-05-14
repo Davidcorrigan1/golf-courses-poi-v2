@@ -1,5 +1,6 @@
 const axios = require("axios");
 const env = require('dotenv');
+const Boom = require("@hapi/boom");
 
 //-------------------------------------------------------------------------------------------------
 // The getWeather(long,lat) will use the open weather api to retrieve weather at given longitude
@@ -10,8 +11,8 @@ const WeatherAPI = {
   getWeather: {
     auth: false,
     handler: async function(request, h) {
-      const lon = request.param.longitude;
-      const lat = request.param.latitude;
+      const lon = request.params.longitude;
+      const lat = request.params.latitude;
       const apiKey = process.env.api_key
       try {
         console.log(`Weather API Key = ${apiKey}`);
@@ -22,13 +23,11 @@ const WeatherAPI = {
           weather = response.data
           console.log("Weather:" + weather.weather[0].description);
         } else {
-          console.log("Could not find Weather at these coordinates")
-        }
-        ;
-
+          return Boom.notFound("No Weather found at these coordinates");
+        };
         return weather;
       } catch (err) {
-        console.log(err);
+        return Boom.notFound("No GolfPOI with this id");
         let weather = {};
         return weather;
       }
