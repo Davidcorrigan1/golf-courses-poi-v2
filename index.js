@@ -9,6 +9,7 @@ const Jwt = require('hapi-auth-jwt2');
 const Joi = require("@hapi/joi");
 require('./app/models/db');
 const ImageStore = require('./app/utils/imageStore');
+const ImageAPI = require('./app/api/imageAPI');
 const utils = require("./app/api/utils.js");
 const env = require('dotenv');
 env.config();
@@ -37,6 +38,7 @@ async function init() {
   await server.register(Jwt);
 
   ImageStore.configure(credentials);
+  ImageAPI.configure(credentials);
 
   server.validator(Joi);
 

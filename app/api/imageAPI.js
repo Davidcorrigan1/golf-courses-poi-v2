@@ -6,17 +6,14 @@ const util = require('util');
 const writeFile = util.promisify(fs.writeFile);
 const Boom = require("@hapi/boom");
 
-const ImageStore = {
-    configure: {
-        auth: false,
-        handler: async function(request, h) {
-            const credentials = {
-                cloud_name: process.env.name,
-                api_key: process.env.key,
-                api_secret: process.env.secret
-            };
-            cloudinary.config(credentials);
-        }
+const ImageAPI = {
+    configure: function() {
+        const credentials = {
+            cloud_name: process.env.name,
+            api_key: process.env.key,
+            api_secret: process.env.secret
+        };
+        cloudinary.config(credentials);
     },
 
     getAllImages: {
@@ -31,7 +28,8 @@ const ImageStore = {
         auth: false,
         handler: async function(request, h) {
             const public_id_list = request.params.idList;
-            const images = await cloudinary.v2.api.resources_by_ids(public_id_list)
+            let public_id_array = public_id_list.split(',');
+            const images = await cloudinary.v2.api.resources_by_ids(public_id_array)
             return images.resources;
         }
     },
@@ -54,4 +52,4 @@ const ImageStore = {
 
 };
 
-module.exports = ImageStore;
+module.exports = ImageAPI;

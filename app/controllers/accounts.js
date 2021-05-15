@@ -3,6 +3,8 @@ const User = require("../models/user");
 const GolfPOI = require("../models/golfPOI");
 const Boom = require("@hapi/boom");
 const Joi = require('@hapi/joi');
+const bcrypt = require("bcrypt");          //bcrypt package use for salt and hashing
+const saltRounds = 10;                     //Setting to 10 to slow hashing.
 
 const Accounts = {
   //----------------------------------------------------------------------------------------------
@@ -72,12 +74,13 @@ const Accounts = {
 
         const currentDate = new Date().toISOString().slice(0,10);
         console.log("Date: " + currentDate);
+        const hash = await bcrypt.hash(payload.password, saltRounds);    //Salt and Hash password
 
         const newUser = new User({
           firstName: payload.firstName,
           lastName: payload.lastName,
           email: payload.email,
-          password: payload.password,
+          password: hash,
           adminUser: payload.adminUser,
           loginCount: 1,
           lastLoginDate: currentDate
@@ -139,7 +142,7 @@ const Accounts = {
           const message = "Email address is not registered";
           throw Boom.unauthorized(message);
         }
-        user.comparePassword(password);
+        await user.comparePassword(password);
         request.cookieAuth.set({ id: user.id });
 
         const currentDate = new Date().toISOString().slice(0,10);
@@ -221,10 +224,14 @@ const Accounts = {
         const userEdit = request.payload;
         const id = request.auth.credentials.id;
         const user = await User.findById(id);
+
+        if (user.password !== userEdit.password) {                            //check password change
+          user.password = await bcrypt.hash(userEdit.password, saltRounds);   //Salt and Hash password.                                         // Assignment - Storing hash value
+        }
+
         user.firstName = userEdit.firstName;
         user.lastName = userEdit.lastName;
         user.email = userEdit.email;
-        user.password = userEdit.password;
         await user.save();
         return h.redirect("/settings");
       } catch (err) {
