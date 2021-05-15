@@ -2,11 +2,12 @@ const GolfPOIs = require('./app/api/golfPOIs');
 const Users = require('./app/api/users');
 const LocationCategory = require('./app/api/locationCategories');
 const WeatherAPI = require('./app/api/weatherAPI');
-const ImageStore = require('./app/api/imageStore');
+const ImageAPI = require('./app/api/imageAPI');
 
 module.exports = [
   { method: 'GET', path: '/api/golfPOIs', config: GolfPOIs.find },
   { method: "GET", path: "/api/golfPOIs/{id}", config: GolfPOIs.findOne },
+  { method: "GET", path: "/api/golfPOIs/findByCategory/{categoryId}", config: GolfPOIs.findByCategory },
   { method: "POST", path: "/api/golfPOIs/update/{courseId}/{id}", config: GolfPOIs.update },
   { method: "POST", path: "/api/golfPOIs/{id}", config: GolfPOIs.uploadImage },
   { method: 'GET', path: '/api/golfPOIs/{id}/{courseId}', config: GolfPOIs.deleteImage },
@@ -29,8 +30,7 @@ module.exports = [
   { method: "DELETE", path: "/api/locationCategories/{id}", config: LocationCategory.deleteOne },
   { method: "DELETE", path: "/api/locationCategories", config: LocationCategory.deleteAll },
 
-  { method: "GET", path: "/api/imageStore", config: LocationCategory.find },
-  { method: "GET", path: "/api/imageStore/{idList}", config: ImageStore.getCourseImages },
+  { method: "GET", path: "/api/imageAPI/{idList}", config: ImageAPI.getCourseImages },
 
   { method: "GET", path: "/api/weatherAPI/{latitude}/{longitude}", config: WeatherAPI.getWeather },
 ];

@@ -38,6 +38,31 @@ const GolfPOIs = {
     },
   },
 
+  //----------------------------------------------------------------------------------------
+  // This method will retrieve all the courses from the GolfPOI collection for a specific category.
+  // And it will pass these to the 'reportCategory' view to display them.
+  // It also passes the adminUser the 'report' view so it can decide what options to show.
+  //----------------------------------------------------------------------------------------
+  findByCategory: {
+    auth: {
+      strategy: "jwt",
+    },
+    handler: async function (request, h) {
+      try {
+
+        const categoryId = request.params.categoryId;
+        const golfCourses = await GolfPOI.findByCategory(categoryId).populate("lastUpdatedBy").populate("category").lean();
+
+        if (!golfCourses) {
+          return Boom.notFound("No GolfPOI for this category");
+        }
+        return golfCourses;
+      } catch (err) {
+        return Boom.notFound("No GolfPOI for this category");
+      }
+    },
+  },
+
   update: {
     auth: {
       strategy: "jwt",
@@ -72,6 +97,8 @@ const GolfPOIs = {
         course.lastUpdatedBy = user._id;
 
         course.location.coordinates = courseEdit.location.coordinates;
+        course.relatedImages = courseEdit.relatedImages;
+
         await course.save()
 
         return h.response(course).code(201);

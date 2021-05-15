@@ -5,7 +5,7 @@
       "firstName": "David",
       "lastName": "Corrigan",
       "email": "davidcorrigan1@gmail.com",
-      "password": "Pass1976",
+      "password": "$2b$10$8RiWqpZJRCse9p3tRKMJOuIMxlZ3Y2yEZLixSSVgMk2/kQ7mm6wFq",
       "adminUser": true,
       "loginCount": 2,
       "lastLoginDate": "2021-05-05"
@@ -14,7 +14,7 @@
       "firstName": "Joshua",
       "lastName": "Corrigan",
       "email": "joshuacorrigan@gmail.com",
-      "password": "Pass1976",
+      "password": "$2b$10$8RiWqpZJRCse9p3tRKMJOuIMxlZ3Y2yEZLixSSVgMk2/kQ7mm6wFq",
       "adminUser": true,
       "loginCount": 2,
       "lastLoginDate": "2021-05-05"
@@ -23,7 +23,7 @@
       "firstName": "Hugh",
       "lastName": "Corrigan",
       "email": "hughcorrigan1@gmail.com",
-      "password": "Pass1976",
+      "password": "$2b$10$8RiWqpZJRCse9p3tRKMJOuIMxlZ3Y2yEZLixSSVgMk2/kQ7mm6wFq",
       "adminUser": false,
       "loginCount": 2,
       "lastLoginDate": "2021-05-05"
