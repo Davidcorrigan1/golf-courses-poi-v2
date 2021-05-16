@@ -5,6 +5,7 @@ const fs = require('fs');
 const util = require('util');
 const writeFile = util.promisify(fs.writeFile);
 const Boom = require("@hapi/boom");
+const url = require('url');
 
 const ImageAPI = {
     configure: function() {
@@ -37,8 +38,13 @@ const ImageAPI = {
     uploadImage: {
         auth: false,
         handler: async function(request, h) {
-            await writeFile('./public/temp.img', imagefile);
+            const imageFile = request.payload
+
+            console.log(imageFile);
+            await writeFile('./public/temp.img', imageFile);
             const uploadResult = await cloudinary.uploader.upload('./public/temp.img');
+            //const uploadResult = await cloudinary.uploader.upload(imageFile);
+            console.log(uploadResult);
             return uploadResult;
         }
     },

@@ -31,6 +31,7 @@ module.exports = [
   { method: "DELETE", path: "/api/locationCategories", config: LocationCategory.deleteAll },
 
   { method: "GET", path: "/api/imageAPI/{idList}", config: ImageAPI.getCourseImages },
+  { method: 'POST', path: '/api/imageAPI/uploadImage', config: ImageAPI.uploadImage },
 
   { method: "GET", path: "/api/weatherAPI/{latitude}/{longitude}", config: WeatherAPI.getWeather },
 ];
