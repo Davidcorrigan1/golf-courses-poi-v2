@@ -9,13 +9,14 @@ const Boom = require("@hapi/boom");
 
 const WeatherAPI = {
   getWeather: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function(request, h) {
       const lon = request.params.longitude;
       const lat = request.params.latitude;
       const apiKey = process.env.api_key
       try {
-        console.log(`Weather API Key = ${apiKey}`);
         const weatherRequest = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
         let weather = {};
         const response = await axios.get(weatherRequest);
