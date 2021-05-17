@@ -5,6 +5,8 @@ const fs = require('fs');
 const util = require('util');
 const writeFile = util.promisify(fs.writeFile);
 const Boom = require("@hapi/boom");
+const url = require('url');
+const ba64 = require("ba64");
 
 const ImageAPI = {
     configure: function() {
@@ -17,7 +19,9 @@ const ImageAPI = {
     },
 
     getAllImages: {
-        auth: false,
+        auth: {
+            strategy: "jwt",
+        },
         handler: async function(request, h) {
             const images = await cloudinary.v2.api.resources();
             return images.resources;
@@ -25,7 +29,9 @@ const ImageAPI = {
     },
 
     getCourseImages: {
-        auth: false,
+        auth: {
+            strategy: "jwt",
+        },
         handler: async function(request, h) {
             const public_id_list = request.params.idList;
             let public_id_array = public_id_list.split(',');
@@ -34,17 +40,10 @@ const ImageAPI = {
         }
     },
 
-    uploadImage: {
-        auth: false,
-        handler: async function(request, h) {
-            await writeFile('./public/temp.img', imagefile);
-            const uploadResult = await cloudinary.uploader.upload('./public/temp.img');
-            return uploadResult;
-        }
-    },
-
     deleteImage: {
-        auth: false,
+        auth: {
+            strategy: "jwt",
+        },
         handler: async function(request, h) {
             await cloudinary.v2.uploader.destroy(id, {});
         }

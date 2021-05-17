@@ -9,7 +9,7 @@ module.exports = [
   { method: "GET", path: "/api/golfPOIs/{id}", config: GolfPOIs.findOne },
   { method: "GET", path: "/api/golfPOIs/findByCategory/{categoryId}", config: GolfPOIs.findByCategory },
   { method: "POST", path: "/api/golfPOIs/update/{courseId}/{id}", config: GolfPOIs.update },
-  { method: "POST", path: "/api/golfPOIs/{id}", config: GolfPOIs.uploadImage },
+  { method: "POST", path: "/api/golfPOIs/upload/{id}", config: GolfPOIs.uploadImage },
   { method: 'GET', path: '/api/golfPOIs/{id}/{courseId}', config: GolfPOIs.deleteImage },
   { method: 'POST', path: '/api/golfPOIs', config: GolfPOIs.create },
   { method: "DELETE", path: "/api/golfPOIs/{id}", config: GolfPOIs.deleteOne },
