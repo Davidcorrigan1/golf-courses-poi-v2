@@ -9,13 +9,12 @@ suite("LocationCategory API tests", function () {
   let categories = fixtures.locationCategories;
   let newCategory = fixtures.newLocationCategory;
   let newUser = fixtures.newUser;
+  let authUser = fixtures.authUser;
 
   const golfPOIService = new GolfPOIService(fixtures.golfPOIService);
 
   suiteSetup(async function () {
     await golfPOIService.deleteAllUsers();
-    const returnedUser = await golfPOIService.createUser(newUser);
-    const response = await golfPOIService.authenticate(newUser);
   });
 
   suiteTeardown(async function () {
@@ -25,10 +24,14 @@ suite("LocationCategory API tests", function () {
 
   setup(async function () {
     await golfPOIService.deleteAllLocationCategories();
+    const returnedUser = await golfPOIService.createUser(authUser);
+    const response = await golfPOIService.authenticate(authUser);
   });
 
   teardown(async function () {
     await golfPOIService.deleteAllLocationCategories();
+    await golfPOIService.deleteAllUsers();
+    await golfPOIService.clearAuth();
   });
 
   test("create a Category", async function () {

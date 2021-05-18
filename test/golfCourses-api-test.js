@@ -15,6 +15,7 @@ suite("golfPOI API tests", function () {
   let newGolfPOI = fixtures.newGolfPOI;
   let newCategory = fixtures.newLocationCategory;
   let newUser = fixtures.newUser;
+  let authUser = fixtures.authUser;
   let updatedCategory = fixtures.updateLocationCategory;
   let updatedGolfPOI = fixtures.updateGolfPOI;
 
@@ -22,8 +23,6 @@ suite("golfPOI API tests", function () {
 
   suiteSetup(async function () {
     await golfPOIService.deleteAllUsers();
-    const returnedUser = await golfPOIService.createUser(newUser);
-    const response = await golfPOIService.authenticate(newUser);
   });
 
   suiteTeardown(async function () {
@@ -34,11 +33,15 @@ suite("golfPOI API tests", function () {
   setup(async function () {
     await golfPOIService.deleteAllLocationCategories();
     await golfPOIService.deleteAllGolfPOIs();
+    const returnedUser = await golfPOIService.createUser(authUser);
+    const response = await golfPOIService.authenticate(authUser);
   });
 
   teardown(async function () {
     await golfPOIService.deleteAllLocationCategories();
     await golfPOIService.deleteAllGolfPOIs();
+    await golfPOIService.deleteAllUsers();
+    await golfPOIService.clearAuth();
   });
 
   test("Create golfPOI", async function () {

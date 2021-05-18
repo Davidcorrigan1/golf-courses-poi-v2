@@ -2,6 +2,7 @@
 
 const GolfPOI = require('../models/golfPOI');
 const LocationCategory = require('../models/locationCategory');
+const CreatePOISchema = require('../validation/CreatePOISchema');
 const User = require('../models/user');
 const Boom = require("@hapi/boom");
 const ImageStore = require("../utils/imageStore");
@@ -116,6 +117,14 @@ const GolfPOIs = {
     handler: async function (request, h) {
       try {
         const newGolfPOI = new GolfPOI(request.payload);
+
+        try {
+          await CreatePOISchema.validateAsync(request.payload, {abortEarly: false});
+        } catch (error) {
+          let message = error.details[0].message;
+          return Boom.badRequest(message);
+        }
+
         const golfPOI = await newGolfPOI.save();
         if (golfPOI) {
           return h.response(golfPOI).code(201);
