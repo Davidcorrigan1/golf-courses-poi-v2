@@ -129,4 +129,22 @@ suite("User API tests", function () {
     const allUsers = await golfPOIService.getUsers();
     assert.equal(allUsers.length, 1);
   });
+
+  test("Delete all users", async function () {
+    let newUser;
+    for (let u of users) {
+      newUser = await golfPOIService.createUser(u);
+    }
+
+    let allUsers = await golfPOIService.getUsers();
+    assert.equal(allUsers.length, users.length+1);
+
+    await golfPOIService.deleteAllUsers();
+
+    const returnedUser = await golfPOIService.createUser(authUser);
+    const response = await golfPOIService.authenticate(authUser);
+
+    allUsers = await golfPOIService.getUsers();
+    assert.equal(allUsers.length, 1);
+  });
 });

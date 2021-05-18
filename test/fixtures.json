@@ -103,6 +103,19 @@
     ],
     "province" : "Ulster"
   },
+
+  "newLocationCategory2": {
+    "validCounties" : [
+      "Wexford",
+      "Wicklow",
+      "Carlow",
+      "Dublin",
+      "Kilkenny",
+      "Louth"
+    ],
+    "province" : "Leinster"
+  },
+
   "newUser": {
     "firstName": "Test3FirstName",
     "lastName": "Test3LastName",
@@ -121,6 +134,7 @@
     "loginCount": 0,
     "lastLoginDate": "2021-05-05"
   },
+
   "newGolfPOI": {
     "location": {
       "type": "Point",
@@ -133,6 +147,7 @@
     "courseName": "Test 1 Course",
     "courseDesc": "Test Course 1 description"
   },
+
   "updateGolfPOI": {
     "location": {
       "type": "Point",

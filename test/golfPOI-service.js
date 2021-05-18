@@ -139,11 +139,19 @@ class GolfPOIService {
     }
   }
 
+  async getGolfPOIByCategory(courseId) {
+    try {
+      const response = await axios.get(this.baseUrl + "/api/golfPOIs/findByCategory/" + courseId);
+      return response.data;
+    } catch (e) {
+      return null;
+    }
+  }
+
 
   async updateGolfPOI(courseId, userId, updatedGolfPOI) {
     try {
       const url = this.baseUrl + "/api/golfPOIs/update/" + courseId + "/" + userId;
-      console.log(url);
       const response = await axios.post(this.baseUrl + "/api/golfPOIs/update/" + courseId + "/" + userId, updatedGolfPOI);
       return response.data;
     } catch (e) {

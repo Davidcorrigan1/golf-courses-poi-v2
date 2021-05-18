@@ -12,6 +12,11 @@ const saltRounds = 10;                     //Setting to 10 to slow hashing.
 
 
 const Users = {
+
+  //---------------------------------------------------------------------------------------------------------------
+  // authenticate method in Users API. This will authenticate a user based on email and password. If details
+  // match then a JWT token is created and passed back.
+  //---------------------------------------------------------------------------------------------------------------
   authenticate: {
     auth: false,
     handler: async function (request, h) {
@@ -34,6 +39,9 @@ const Users = {
     },
   },
 
+  //---------------------------------------------------------------------------------------------------------------
+  // find method in Users API. This will return all the users on the DB.
+  //---------------------------------------------------------------------------------------------------------------
   find: {
     auth: {
       strategy: "jwt",
@@ -44,6 +52,9 @@ const Users = {
     },
   },
 
+  //---------------------------------------------------------------------------------------------------------------
+  // findOne method in Users API. This will return a specific user on the DB by id.
+  //---------------------------------------------------------------------------------------------------------------
   findOne: {
     auth: {
       strategy: "jwt",
@@ -61,6 +72,9 @@ const Users = {
     },
   },
 
+  //---------------------------------------------------------------------------------------------------------------
+  // findByEmail method in Users API. This will return a specific user on the DB by email Address.
+  //---------------------------------------------------------------------------------------------------------------
   findByEmail: {
     auth: {
       strategy: "jwt",
@@ -79,8 +93,8 @@ const Users = {
   },
 
   //-----------------------------------------------------------------------------------------------
-  // This function will create a new user based on the user object passed.
-  // 1) It will validate the user input based on the UserSchema rules set up.
+  // The create method will create a new user based on the user object passed.
+  // 1) It will validate the user input based on the createUserSchema rules set up.
   // 2) Check the email address doesn't exist
   // 3) Hash and salt the password
   // 4) Create a new user object and save it to the collection.
@@ -122,6 +136,13 @@ const Users = {
     }
   },
 
+  //-----------------------------------------------------------------------------------------------
+  // The update method will create a update user based on the userid and object passed.
+  // 1) It will first find the user and retrieve current details
+  // 2) It will then validate the user input based on the UpdateUserSchema rules set up.
+  // 3) Checks if the password has been updated. if it has then hash it using bcrypt
+  // 4) Create a update user object and save it to the collection.
+  //-----------------------------------------------------------------------------------------------
   update: {
     auth: {
       strategy: "jwt",
@@ -161,6 +182,9 @@ const Users = {
     }
   },
 
+  //---------------------------------------------------------------------------------------------------------------
+  // deleteOne method in Users API. This will delete a specific user on the DB by id.
+  //---------------------------------------------------------------------------------------------------------------
   deleteOne: {
     auth: {
       strategy: "jwt",
@@ -174,6 +198,9 @@ const Users = {
     },
   },
 
+  //---------------------------------------------------------------------------------------------------------------
+  // deleteAll method in Users API. This will delete all users on the DB by id.
+  //---------------------------------------------------------------------------------------------------------------
   deleteAll: {
     auth: {
       strategy: "jwt",

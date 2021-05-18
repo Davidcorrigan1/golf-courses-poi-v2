@@ -98,4 +98,21 @@ suite("LocationCategory API tests", function () {
     const allCategories = await golfPOIService.getLocationCategories();
     assert.equal(allCategories.length, 0);
   });
+
+  test("Delete all categories", async function () {
+    const returnedUser = await golfPOIService.createUser(newUser);
+
+    for (let category of categories) {
+      category.lastUpdatedBy = returnedUser._id;
+      await golfPOIService.createLocationCategory(category);
+    }
+
+    let allCategories = await golfPOIService.getLocationCategories();
+    assert.equal(allCategories.length, categories.length);
+
+    await golfPOIService.deleteAllLocationCategories();
+    allCategories = await golfPOIService.getLocationCategories();
+    assert.equal(allCategories.length, 0);
+
+  });
 });
