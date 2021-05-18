@@ -2,19 +2,19 @@
   "golfPOIService": "http://localhost:4000",
   "users": [
     {
-      "firstName": "Test1 FirstName",
-      "lastName": "Test1 LastName",
+      "firstName": "Test1FirstName",
+      "lastName": "Test1LastName",
       "email": "test1Email@gmail.com",
-      "password": "secret",
+      "password": "Secret11!",
       "adminUser": true,
       "loginCount": 0,
       "lastLoginDate": "2021-05-05"
     },
     {
-      "firstName": "Test2 FirstName",
-      "lastName": "Test2 LastName",
+      "firstName": "Test2FirstName",
+      "lastName": "Test2LastName",
       "email": "test2Email@gmail.com",
-      "password": "secret",
+      "password": "Secret11!",
       "adminUser": false,
       "loginCount": 0,
       "lastLoginDate": "2021-05-05"
@@ -104,19 +104,19 @@
     "province" : "Ulster"
   },
   "newUser": {
-    "firstName": "Test3 FirstName",
-    "lastName": "Test3 LastName",
+    "firstName": "Test3FirstName",
+    "lastName": "Test3LastName",
     "email": "test3Email@gmail.com",
-    "password": "secret",
+    "password": "Secret11!",
     "adminUser": true,
     "loginCount": 0,
     "lastLoginDate": "2021-05-05"
   },
   "authUser": {
-    "firstName": "Auth FirstName",
-    "lastName": "Auth LastName",
+    "firstName": "AuthFirstName",
+    "lastName": "AuthLastName",
     "email": "AuthEmail@gmail.com",
-    "password": "secret",
+    "password": "Secret11!",
     "adminUser": true,
     "loginCount": 0,
     "lastLoginDate": "2021-05-05"

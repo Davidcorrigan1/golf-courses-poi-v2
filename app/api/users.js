@@ -1,10 +1,15 @@
 'use strict';
 
+const Joi = require('@hapi/joi');
 const User = require('../models/user');
+const CreateUserSchema = require('../validation/CreateuserSchema');
+const UpdateUserSchema = require('../validation/UpdateUserSchema');
 const Boom = require("@hapi/boom");
 const utils = require('./utils.js');
 const bcrypt = require("bcrypt");          //bcrypt package use for salt and hashing
 const saltRounds = 10;                     //Setting to 10 to slow hashing.
+
+
 
 const Users = {
   authenticate: {
@@ -73,15 +78,30 @@ const Users = {
     },
   },
 
+  //-----------------------------------------------------------------------------------------------
+  // This function will create a new user based on the user object passed.
+  // 1) It will validate the user input based on the UserSchema rules set up.
+  // 2) Check the email address doesn't exist
+  // 3) Hash and salt the password
+  // 4) Create a new user object and save it to the collection.
+  //-----------------------------------------------------------------------------------------------
   create: {
     auth: false,
     handler: async function (request, h) {
+
+      try {
+        await CreateUserSchema.validateAsync(request.payload, {abortEarly: false});
+      } catch (error) {
+        let message = error.details[0].message;
+        return Boom.badRequest(message);
+      }
+
       const payload = request.payload;
 
       let existingUser = await User.findByEmail(payload.email);
       if (existingUser) {
         const message = "Email address is already registered";
-        throw Boom.badData(message);
+        return Boom.badRequest(message);
       }
 
       const hash = await bcrypt.hash(payload.password, saltRounds);
@@ -112,6 +132,15 @@ const Users = {
         if (!user) {
           return Boom.notFound("No User with this id");
         }
+
+        try {
+          await UpdateUserSchema.validateAsync(request.payload, {abortEarly: false});
+        } catch (error) {
+          console.log(error);
+          let message = error.details[0].message;
+          return Boom.badRequest(message);
+        }
+
         if (user.password !== request.payload.password) {                             //check password change
           user.password = await bcrypt.hash(request.payload.password, saltRounds);    //Salt and Hash password Updates password.                                         // Assignment - Storing hash value
         }
@@ -120,6 +149,7 @@ const Users = {
         user.email = request.payload.email;
         user.loginCount = request.payload.loginCount;
         user.lastLoginDate = request.payload.lastLoginDate;
+
         const updatedUser = await user.save();
         if (updatedUser) {
           return h.response(updatedUser).code(201);

@@ -14,36 +14,35 @@ suite("User API tests", function () {
   const golfPOIService = new GolfPOIService(fixtures.golfPOIService);
 
   suiteSetup(async function () {
-    const returnedUser = await golfPOIService.createUser(authUser);
-    const response = await golfPOIService.authenticate(authUser);
-    await golfPOIService.deleteAllUsers();
-    await golfPOIService.deleteOneUser(returnedUser._id)
+
   });
 
   suiteTeardown(async function () {
+
+
+  });
+
+  setup(async function () {
+    const returnedUser = await golfPOIService.createUser(authUser);
+    const response = await golfPOIService.authenticate(authUser);
+  });
+
+  teardown(async function () {
     await golfPOIService.deleteAllUsers();
     await golfPOIService.clearAuth();
   });
 
-  setup(async function () {
-    //await golfPOIService.deleteAllUsers();
-  });
-
-  teardown(async function () {
-    //await golfPOIService.deleteAllUsers();
-  });
-
   test("authenticate", async function () {
-    const returnedUser = await golfPOIService.createUser(authUser);
-    const response = await golfPOIService.authenticate(authUser);
+    const returnedUser = await golfPOIService.createUser(newUser);
+    const response = await golfPOIService.authenticate(newUser);
     assert(response.success);
     assert.isDefined(response.token);
     await golfPOIService.deleteOneUser(returnedUser._id)
   });
 
   test("verify Token", async function () {
-    const returnedUser = await golfPOIService.createUser(authUser);
-    const response = await golfPOIService.authenticate(authUser);
+    const returnedUser = await golfPOIService.createUser(newUser);
+    const response = await golfPOIService.authenticate(newUser);
 
     const userInfo = utils.decodeToken(response.token);
     assert.equal(userInfo.email, returnedUser.email);
@@ -54,9 +53,13 @@ suite("User API tests", function () {
   test("create a user", async function () {
     const returnedUser = await golfPOIService.createUser(newUser);
     const response = await golfPOIService.authenticate(newUser);
-    assert(_.some([returnedUser], newUser), "returnedUser must be a superset of newUser");
+    assert.equal(returnedUser.email, newUser.email);
+    assert.equal(returnedUser.userId, newUser._id);
+    assert.equal(returnedUser.loginCount, newUser.loginCount);
+    assert.equal(returnedUser.lastLoginDate, newUser.lastLoginDate);
+    assert.equal(returnedUser.firstName, newUser.firstName);
+    assert.equal(returnedUser.lastName, newUser.lastName);
     assert.isDefined(returnedUser._id);
-    await golfPOIService.deleteOneUser(returnedUser._id)
   });
 
   test("get user", async function () {
@@ -87,11 +90,10 @@ suite("User API tests", function () {
     let newUser;
     for (let u of users) {
       newUser = await golfPOIService.createUser(u);
-      await golfPOIService.authenticate(newUser);
     }
 
     const allUsers = await golfPOIService.getUsers();
-    assert.equal(allUsers.length, users.length);
+    assert.equal(allUsers.length, users.length+1);
 
     for (let u of allUsers) {
         await golfPOIService.deleteOneUser(u._id)
@@ -100,22 +102,28 @@ suite("User API tests", function () {
 
   test("get users detail", async function () {
     let newUser;
+
+    await golfPOIService.deleteAllUsers();
+
     for (let u of users) {
       newUser = await golfPOIService.createUser(u);
-      await golfPOIService.authenticate(newUser);
+      await golfPOIService.authenticate(u);
     }
 
     const allUsers = await golfPOIService.getUsers();
     for (let i = 0; i < users.length; i++) {
-      assert(_.some([allUsers[i]], users[i]), "returnedUser must be a superset of newUser");
+      assert.equal(allUsers[i].email, users[i].email);
+      assert.equal(allUsers[i].userId, users[i]._id);
+      assert.equal(allUsers[i].loginCount, users[i].loginCount);
+      assert.equal(allUsers[i].lastLoginDate, users[i].lastLoginDate);
+      assert.equal(allUsers[i].firstName, users[i].firstName);
+      assert.equal(allUsers[i].lastName, users[i].lastName);
     }
 
-    for (let u of allUsers) {
-      await golfPOIService.deleteOneUser(u._id)
-    }
   });
 
   test("get all users empty", async function () {
+    await golfPOIService.deleteAllUsers();
     const u1 = await golfPOIService.createUser(newUser);
     const response = await golfPOIService.authenticate(newUser);
     const allUsers = await golfPOIService.getUsers();
