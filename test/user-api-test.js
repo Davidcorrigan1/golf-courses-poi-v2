@@ -10,6 +10,7 @@ suite("User API tests", function () {
   let users = fixtures.users;
   let newUser = fixtures.newUser;
   let authUser = fixtures.authUser;
+  let updateUser = fixtures.updateUser;
 
   const golfPOIService = new GolfPOIService(fixtures.golfPOIService);
 
@@ -146,5 +147,25 @@ suite("User API tests", function () {
 
     allUsers = await golfPOIService.getUsers();
     assert.equal(allUsers.length, 1);
+  });
+
+  test("get user by email", async function () {
+    const u1 = await golfPOIService.createUser(newUser);
+    const response = await golfPOIService.authenticate(newUser);
+    const u2 = await golfPOIService.getUserByEmail(newUser.email);
+    assert.deepEqual(u1, u2);
+  });
+
+  test("Update a user", async function () {
+    const returnedUser = await golfPOIService.createUser(newUser);
+    const response = await golfPOIService.authenticate(newUser);
+    await golfPOIService.updateUser(returnedUser._id, updateUser);
+    const updatedUser = await golfPOIService.getUser(returnedUser._id);
+    assert.equal(updatedUser.email, updateUser.email);
+    assert.equal(updatedUser.userId, updateUser._id);
+    assert.equal(updatedUser.loginCount, updateUser.loginCount);
+    assert.equal(updatedUser.lastLoginDate, updateUser.lastLoginDate);
+    assert.equal(updatedUser.firstName, updateUser.firstName);
+    assert.equal(updatedUser.lastName, updateUser.lastName);
   });
 });

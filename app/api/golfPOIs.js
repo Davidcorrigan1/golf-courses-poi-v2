@@ -3,6 +3,8 @@
 const GolfPOI = require('../models/golfPOI');
 const LocationCategory = require('../models/locationCategory');
 const CreatePOISchema = require('../validation/CreatePOISchema');
+const UpdatePOISchema = require('../validation/UpdatePOISchema');
+const sanitizeHtml = require('sanitize-html');
 const User = require('../models/user');
 const Boom = require("@hapi/boom");
 const ImageStore = require("../utils/imageStore");
@@ -73,6 +75,12 @@ const GolfPOIs = {
 
   //---------------------------------------------------------------------------------------------------------------
   // update method in golfPOI API. This will update a specific course based on courseId and courseObject.
+  // 1) Find the user for the Id passed
+  // 2) Find the course for the courseId Passed
+  // 3) Sanitize the name and description to remove html tags and attributes
+  // 4) Validate input based on rules
+  // 5) Find the related id of the category selected
+  // 6) Update the POI object and save to collection.
   //---------------------------------------------------------------------------------------------------------------
   update: {
     auth: {
@@ -93,6 +101,21 @@ const GolfPOIs = {
           return Boom.notFound("Update GolfPOI: No GolfPOI with this course id");
         }
 
+        // Sanitize the course name and description
+        request.payload.courseName = sanitizeHtml(request.payload.courseName,{  allowedTags: [],
+          allowedAttributes: []});
+        request.payload.courseDesc = sanitizeHtml(request.payload.courseDesc,{  allowedTags: [],
+          allowedAttributes: []});
+
+        // Validate the update course input
+        try {
+          await UpdatePOISchema.validateAsync(request.payload, {abortEarly: false});
+        } catch (error) {
+          let message = error.details[0].message;
+          console.log(error.details[0].message);
+          return Boom.badRequest(message);
+        }
+
         // From the category picked it finds the related id.
         if ((!course.category) || (course.category !== courseEdit.category)) {
           let category = await LocationCategory.findById(courseEdit.category)
@@ -108,8 +131,6 @@ const GolfPOIs = {
         course.lastUpdatedBy = user._id;
 
         course.location.coordinates = courseEdit.location.coordinates;
-        course.relatedImages = courseEdit.relatedImages;
-
         await course.save()
 
         return h.response(course).code(201);
@@ -121,8 +142,9 @@ const GolfPOIs = {
   },
 
   //---------------------------------------------------------------------------------------------------------------
-  // create method in golfPOI API. This will create a new course. The payload fields are validated using Joi
-  // and and rules in CreatePOISchema
+  // create method in golfPOI API. This will create a new course.
+  // The course name and desc are sanitize using Sanitize-html to remove all tags/attributes
+  // The payload fields are validated using Joi and and rules in CreatePOISchema
   //---------------------------------------------------------------------------------------------------------------
   create: {
     auth: {
@@ -130,15 +152,23 @@ const GolfPOIs = {
     },
     handler: async function (request, h) {
       try {
-        const newGolfPOI = new GolfPOI(request.payload);
 
+        // Sanitize the course name and description
+        request.payload.courseName = sanitizeHtml(request.payload.courseName,{  allowedTags: [],
+          allowedAttributes: []});
+        request.payload.courseDesc = sanitizeHtml(request.payload.courseDesc,{  allowedTags: [],
+          allowedAttributes: []});
+
+        // Validate the user input and return a message if a problem
         try {
           await CreatePOISchema.validateAsync(request.payload, {abortEarly: false});
         } catch (error) {
           let message = error.details[0].message;
+          console.log(error.details[0].message);
           return Boom.badRequest(message);
         }
 
+        const newGolfPOI = new GolfPOI(request.payload);
         const golfPOI = await newGolfPOI.save();
         if (golfPOI) {
           return h.response(golfPOI).code(201);
@@ -203,12 +233,13 @@ const GolfPOIs = {
         // Then save the course document back to the collection.
         const elementId = golfPOI.relatedImages.indexOf(request.params.id);
         const removedItem = golfPOI.relatedImages.splice(elementId,1);
+        golfPOI.lastUpdatedBy = request.params.userId;
         await golfPOI.save();
 
         return (golfPOI);
 
       } catch (err) {
-        console.log(err);
+        return Boom.badImplementation("error Deleting Image to golfPOI");
       }
     }
   },

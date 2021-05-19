@@ -125,6 +125,16 @@
     "loginCount": 0,
     "lastLoginDate": "2021-05-05"
   },
+
+  "updateUser": {
+    "firstName": "UpdateFirstName",
+    "lastName": "UpdateLastName",
+    "email": "updateEmail@gmail.com",
+    "password": "Update133!",
+    "loginCount": 1,
+    "lastLoginDate": "2021-06-05"
+  },
+
   "authUser": {
     "firstName": "AuthFirstName",
     "lastName": "AuthLastName",

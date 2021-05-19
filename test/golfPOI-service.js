@@ -42,6 +42,15 @@ class GolfPOIService {
     }
   }
 
+  async getUserByEmail(email) {
+    try {
+      const response = await axios.get(this.baseUrl + "/api/users/email/" + email);
+      return response.data;
+    } catch (e) {
+      return null;
+    }
+  }
+
   async createUser(newUser) {
     try {
       const response = await axios.post(this.baseUrl + "/api/users/create", newUser);
@@ -51,6 +60,14 @@ class GolfPOIService {
     }
   }
 
+  async updateUser(userId, updatedUser) {
+    try {
+      const response = await axios.post(this.baseUrl + "/api/users/update/" + userId, updatedUser);
+      return response.data;
+    } catch (e) {
+      return null;
+    }
+  }
   async deleteAllUsers() {
     try {
       const response = await axios.delete(this.baseUrl + "/api/users");
