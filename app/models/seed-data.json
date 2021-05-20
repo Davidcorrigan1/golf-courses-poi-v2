@@ -85,8 +85,8 @@
       "location": {
         "type": "Point",
         "coordinates": [
-          -9.6721,
-          51.8751
+          -9.6721225,
+          51.8751480
         ]
       },
       "relatedImages": [
@@ -121,16 +121,16 @@
       "location" : {
         "type" : "Point",
         "coordinates" : [
-          -9.06,
-          53.26
+          -9.0959548,
+          53.2987517
         ]
       },
       "relatedImages" : [
         "f2cadu7szdkamawl4fcy",
         "sima96t0c50p2qks8h0m"
       ],
-      "courseName" : "Salthill Golf Course",
-      "courseDesc" : "Located in the famous seaside resort of Salthill Galway Golf Club offers the discerning visitor a Championship Standard 18 hole Parkland Course with spectacular views over Galway Bay, the Burren and Aran Islands. This fine of test of golf is 5,974 metres long and plays to a par of 70 with a standard scratch of 72 off the back tees. Access to the first four holes which run alongside Galway Bay is via an underground pedestrian tunnel. With an abundance of mature trees, elevated and tiered greens and plenty of wild gorse to punish the wayward shot you must be accurate off the tee, have a good short game and your putter to be hot to score well - playing to your handicap here, your game is in good shape!! Other golfing facilities include putting green, short game practice area, swing room, range and driving nets whilst our resident PGA Professional David Mortimer and his team are on hand to offer advice and assistance on all aspects of your visit and game.",
+      "courseName" : "Glenlo Abbey Golf Course",
+      "courseDesc" : "Located in the grounds of Glenlo Abbey, this Golf Club offers the discerning visitor a Championship Standard 18 hole Parkland Course with spectacular views over Galway Bay, the Burren and Aran Islands. This fine of test of golf is 5,974 metres long and plays to a par of 70 with a standard scratch of 72 off the back tees. Access to the first four holes which run alongside Galway Bay is via an underground pedestrian tunnel. With an abundance of mature trees, elevated and tiered greens and plenty of wild gorse to punish the wayward shot you must be accurate off the tee, have a good short game and your putter to be hot to score well - playing to your handicap here, your game is in good shape!! Other golfing facilities include putting green, short game practice area, swing room, range and driving nets whilst our resident PGA Professional David Mortimer and his team are on hand to offer advice and assistance on all aspects of your visit and game.",
       "lastUpdatedBy" : "->users.user2",
       "category" : "->locationCategories.category3"
     },
@@ -178,7 +178,7 @@
       },
       "relatedImages" : [],
       "courseName" : "Cork Golf Course",
-      "courseDesc" : "Cork GC was formed in 1888 by prominent Cork businessmen. The first location was at Rathcooney Hill above Glanmire village. Thereafter a number of moves were made while searching for a better site. The present location at Little Island was chosen in 1897 when Messrs Maudslay, J. H. Gubbins and Sharman Crawford spotted its potential while sailing in the adjacent estuary. Initially the members laid out just four holes along the shore amongst what were still working limestone quarries, owned by the local Cantillon family. To allow play, many craters had to be filledwith waste stones and top soil, producing a fast draining, links-like turf; still an attractive feature to this day. A club house was built shortly afterwards near the present eight tee.",
+      "courseDesc" : "Cork GC was formed in 1888 by prominent Cork businessmen. The first location was at Rathcooney Hill above Glanmire village. Thereafter a number of moves were made while searching for a better site. The present location at Little Island was chosen in 1897 when Messrs Maudslay, J. H. Gubbins and Sharman Crawford spotted its potential while sailing in the adjacent estuary. Initially the members laid out just four holes along the shore amongst what were still working limestone quarries, owned by the local Cantillon family. To allow play, many craters had to be filled with waste stones and top soil, producing a fast draining, links-like turf; still an attractive feature to this day. A club house was built shortly afterwards near the present eight tee.",
       "lastUpdatedBy" : "->users.user1",
       "category" : "->locationCategories.category2"
     },
@@ -186,15 +186,15 @@
       "location" : {
         "type" : "Point",
         "coordinates" : [
-          -9.095,
-          53.26
+          -9.0954120,
+          53.2609307
         ]
       },
       "relatedImages" : [
         "ucavx3htmyoqnajadxuh"
       ],
       "courseName" : "Galway Golf Course",
-      "courseDesc" : "This fine of test of golf is 5,974 metres long and plays to a par of 70 with a standard scratch of 72 off the back tees. Access to the first four holes which run alongside Galway Bay is via an underground pedestrian tunnel. With an abundance of mature trees, elevated and tiered greens and plenty of wild gorse to punish the wayward shot you must be accurate off the tee, have a good short game and your putter to be hot to score well - playing to your handicap here, your game is in good shape!!  Other golfing facilities include putting green, short game practice area, swing room, range and driving nets whilst our resident PGA Professional David Mortimer and his team are on hand to offer advice and assistance on all aspects of your visit and game.",
+      "courseDesc" : "This fine of test of golf is 5,974 metres long and plays to a par of 70 with a standard scratch of 72 off the back tees. Access to the first four holes which run alongside Galway Bay is via an underground pedestrian tunnel. With an abundance of mature trees, elevated and tiered greens and plenty of wild gorse to punish the wayward shot you must be accurate off the tee, have a good short game and your putter to be hot to score well - playing to your handicap here, your game is in good shape. Other golfing facilities include putting green, short game practice area, swing room, range and driving nets whilst our resident PGA Professional David Mortimer and his team are on hand to offer advice and assistance on all aspects of your visit and game.",
       "lastUpdatedBy" : "->users.user2",
       "category" : "->locationCategories.category3"
     },
@@ -275,6 +275,22 @@
       ],
       "courseName" : "Royal Portrush Golf Club",
       "courseDesc" : "Royal Portrush Golf Club is a private golf club in County Antrim, Northern Ireland. The 36-hole club has two links courses, the Dunluce Links (the championship course) and the Valley Links. The former is one of the courses on the rota of the Open Championship and last hosted the tournament in 2019.  In 1951, Royal Portrush first hosted the Open Championship, the oldest of golf's major championships; it was the first Open not held on the island of Great Britain. The Open returned to Portrush in 2019, and it will host twice more by 2040.[1] It also hosted the Irish Open in 2012, the first in Northern Ireland since 1953.[2]",
+      "lastUpdatedBy" : "->users.user1",
+      "category" : "->locationCategories.category4"
+    },
+    "course13": {
+      "location" : {
+        "type" : "Point",
+        "coordinates" : [
+          -7.5255238,
+          53.2415953
+        ]
+      },
+      "relatedImages" : [
+        "fq7itlrgm3nyptghdrpq"
+      ],
+      "courseName" : "Tullamore Golf Club",
+      "courseDesc" : "Tullamore Golf Club is a private parkland golf club in County Offaly located near Brookfield. It is consistently rated in the top 30 courses in Ireland. The course by designed by James Braid in 1926.",
       "lastUpdatedBy" : "->users.user1",
       "category" : "->locationCategories.category4"
     }

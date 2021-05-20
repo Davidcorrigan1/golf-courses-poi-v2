@@ -157,7 +157,6 @@ const Users = {
         try {
           await UpdateUserSchema.validateAsync(request.payload, {abortEarly: false});
         } catch (error) {
-          console.log(error);
           let message = error.details[0].message;
           return Boom.badRequest(message);
         }
