@@ -2,7 +2,7 @@
 
 const Joi = require('@hapi/joi');
 
-const createUserSchema = Joi.object().keys({
+const CreateUserSchema = Joi.object().keys({
   firstName: Joi.string()
     .required()
     .regex(/^[A-Z][A-Za-z-\s'’,.0-9]{1,40}$/)
@@ -21,4 +21,4 @@ const createUserSchema = Joi.object().keys({
 
 });
 
-module.exports = createUserSchema;
+module.exports = CreateUserSchema;
