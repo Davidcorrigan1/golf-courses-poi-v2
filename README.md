@@ -42,10 +42,14 @@ Here are the main features:
 * They can add new categories and update categories
 * Courses can be filtered by category at the click of a button.
 * On the edit course page the current course weather will also be displayed.
+* There is a Map page which will display markers for all courses entered.
+* Each marker has a link which will take the user to a Golf POI display page with a more detailed map
 
 ### Built With
 
 This section lists major platforms, frameworks and technologies that were used to build the project using. 
+
+This application has a number of API built using hapi which are being used by a Svelte Front end Application.
 * [Bootstrap](https://getbootstrap.com)
 * [Node.js](https://nodejs.org)
 * [hapi](https://hapi.dev/)
@@ -83,7 +87,7 @@ This is an example of how to list things you need to use the software and how to
 1. Details to be added
 2. Clone the repo
    ```sh
-   git clone https://github.com/Davidcorrigan1/golf-courses-poi.git
+   git clone https://github.com/Davidcorrigan1/golf-courses-poi-v2.git
    ```
 3. Install NPM packages
    ```sh
@@ -115,7 +119,7 @@ Distributed under the WIT License.
 
 
 
-Project Link: [https://github.com/davidcorrigan1/golf-courses-poi](https://github.com/davidcorrigan1/golf-courses-poi
+Project Link: [https://github.com/davidcorrigan1/golf-courses-poi-v2](https://github.com/davidcorrigan1/golf-courses-poi-v2
 )
 
 
