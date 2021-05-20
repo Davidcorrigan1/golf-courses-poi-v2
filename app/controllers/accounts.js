@@ -73,7 +73,6 @@ const Accounts = {
         }
 
         const currentDate = new Date().toISOString().slice(0,10);
-        console.log("Date: " + currentDate);
         const hash = await bcrypt.hash(payload.password, saltRounds);    //Salt and Hash password
 
         const newUser = new User({
