@@ -3,11 +3,17 @@
 const GolfPOI = require('../models/golfPOI');
 const LocationCategory = require('../models/locationCategory');
 const CreatePOISchema = require('../validation/CreatePOISchema');
+const UpdatePOISchema = require('../validation/UpdatePOISchema');
+const sanitizeHtml = require('sanitize-html');
 const User = require('../models/user');
 const Boom = require("@hapi/boom");
 const ImageStore = require("../utils/imageStore");
 
 const GolfPOIs = {
+
+  //---------------------------------------------------------------------------------------------------------------
+  // find method in golfPOI API. This will return all golfPOIs found. I.e all golf courses.
+  //---------------------------------------------------------------------------------------------------------------
   find: {
     auth: {
       strategy: "jwt",
@@ -22,6 +28,9 @@ const GolfPOIs = {
     },
   },
 
+  //---------------------------------------------------------------------------------------------------------------
+  // findOne method in golfPOI API. This will return a specific golfPOI found based on the id.
+  //---------------------------------------------------------------------------------------------------------------
   findOne: {
     auth: {
       strategy: "jwt",
@@ -39,11 +48,11 @@ const GolfPOIs = {
     },
   },
 
-  //----------------------------------------------------------------------------------------
-  // This method will retrieve all the courses from the GolfPOI collection for a specific category.
+  //----------------------------------------------------------------------------------------------------
+  // This findByCategory method will retrieve all the courses from the GolfPOI collection for a specific category.
   // And it will pass these to the 'reportCategory' view to display them.
   // It also passes the adminUser the 'report' view so it can decide what options to show.
-  //----------------------------------------------------------------------------------------
+  //----------------------------------------------------------------------------------------------------
   findByCategory: {
     auth: {
       strategy: "jwt",
@@ -64,6 +73,15 @@ const GolfPOIs = {
     },
   },
 
+  //---------------------------------------------------------------------------------------------------------------
+  // update method in golfPOI API. This will update a specific course based on courseId and courseObject.
+  // 1) Find the user for the Id passed
+  // 2) Find the course for the courseId Passed
+  // 3) Sanitize the name and description to remove html tags and attributes
+  // 4) Validate input based on rules
+  // 5) Find the related id of the category selected
+  // 6) Update the POI object and save to collection.
+  //---------------------------------------------------------------------------------------------------------------
   update: {
     auth: {
       strategy: "jwt",
@@ -83,6 +101,21 @@ const GolfPOIs = {
           return Boom.notFound("Update GolfPOI: No GolfPOI with this course id");
         }
 
+        // Sanitize the course name and description
+        request.payload.courseName = sanitizeHtml(request.payload.courseName,{  allowedTags: [],
+          allowedAttributes: []});
+        request.payload.courseDesc = sanitizeHtml(request.payload.courseDesc,{  allowedTags: [],
+          allowedAttributes: []});
+
+        // Validate the update course input
+        try {
+          await UpdatePOISchema.validateAsync(request.payload, {abortEarly: false});
+        } catch (error) {
+          let message = error.details[0].message;
+          console.log(error.details[0].message);
+          return Boom.badRequest(message);
+        }
+
         // From the category picked it finds the related id.
         if ((!course.category) || (course.category !== courseEdit.category)) {
           let category = await LocationCategory.findById(courseEdit.category)
@@ -98,8 +131,6 @@ const GolfPOIs = {
         course.lastUpdatedBy = user._id;
 
         course.location.coordinates = courseEdit.location.coordinates;
-        course.relatedImages = courseEdit.relatedImages;
-
         await course.save()
 
         return h.response(course).code(201);
@@ -110,21 +141,34 @@ const GolfPOIs = {
     }
   },
 
+  //---------------------------------------------------------------------------------------------------------------
+  // create method in golfPOI API. This will create a new course.
+  // The course name and desc are sanitize using Sanitize-html to remove all tags/attributes
+  // The payload fields are validated using Joi and and rules in CreatePOISchema
+  //---------------------------------------------------------------------------------------------------------------
   create: {
     auth: {
       strategy: "jwt",
     },
     handler: async function (request, h) {
       try {
-        const newGolfPOI = new GolfPOI(request.payload);
 
+        // Sanitize the course name and description
+        request.payload.courseName = sanitizeHtml(request.payload.courseName,{  allowedTags: [],
+          allowedAttributes: []});
+        request.payload.courseDesc = sanitizeHtml(request.payload.courseDesc,{  allowedTags: [],
+          allowedAttributes: []});
+
+        // Validate the user input and return a message if a problem
         try {
           await CreatePOISchema.validateAsync(request.payload, {abortEarly: false});
         } catch (error) {
           let message = error.details[0].message;
+          console.log(error.details[0].message);
           return Boom.badRequest(message);
         }
 
+        const newGolfPOI = new GolfPOI(request.payload);
         const golfPOI = await newGolfPOI.save();
         if (golfPOI) {
           return h.response(golfPOI).code(201);
@@ -136,6 +180,11 @@ const GolfPOIs = {
     }
   },
 
+  //---------------------------------------------------------------------------------------------------------------
+  // uploadImage method in golfPOI API. This will save a new image pass in the payload to Cloudinary using the
+  // ImageStore utility. Then the public_id of the image is added to the course related images array and the
+  // course details are saved to the DB collection.
+  //---------------------------------------------------------------------------------------------------------------
   uploadImage: {
     auth: {
       strategy: "jwt",
@@ -161,6 +210,11 @@ const GolfPOIs = {
     }
   },
 
+  //---------------------------------------------------------------------------------------------------------------
+  // deleteImage method in golfPOI API. This will take in the public_id of an image and delete it from
+  // Cloudinary. It will then retrieve the course using the courseId passed in and remove the public_id from the
+  // array of relatedImages and save the course back to the DB collection.
+  //---------------------------------------------------------------------------------------------------------------
   deleteImage: {
     auth: {
       strategy: "jwt",
@@ -179,16 +233,20 @@ const GolfPOIs = {
         // Then save the course document back to the collection.
         const elementId = golfPOI.relatedImages.indexOf(request.params.id);
         const removedItem = golfPOI.relatedImages.splice(elementId,1);
+        golfPOI.lastUpdatedBy = request.params.userId;
         await golfPOI.save();
 
         return (golfPOI);
 
       } catch (err) {
-        console.log(err);
+        return Boom.badImplementation("error Deleting Image to golfPOI");
       }
     }
   },
 
+  //---------------------------------------------------------------------------------------------------------------
+  // deleteOne method in golfPOI API. This will delete a specific course using the courseId passed in.
+  //---------------------------------------------------------------------------------------------------------------
   deleteOne: {
     auth: {
       strategy: "jwt",
@@ -202,6 +260,9 @@ const GolfPOIs = {
     }
   },
 
+  //---------------------------------------------------------------------------------------------------------------
+  // deleteAll method in golfPOI API. This will delete all courses. (Use with care!!).
+  //---------------------------------------------------------------------------------------------------------------
   deleteAll: {
     auth: {
       strategy: "jwt",

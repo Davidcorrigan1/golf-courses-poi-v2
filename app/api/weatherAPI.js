@@ -22,7 +22,6 @@ const WeatherAPI = {
         const response = await axios.get(weatherRequest);
         if (response.status == 200) {
           weather = response.data
-          console.log("Weather:" + weather.weather[0].description);
         } else {
           return Boom.notFound("No Weather found at these coordinates");
         };

@@ -4,6 +4,10 @@ const LocationCategory = require('../models/locationCategory');
 const Boom = require("@hapi/boom");
 
 const LocationCategories = {
+
+  //---------------------------------------------------------------------------------------------------------------
+  // find method in LocationCategories API. This will return all Categories found. I.e all provinces courses.
+  //---------------------------------------------------------------------------------------------------------------
   find: {
     auth: {
       strategy: "jwt",
@@ -14,6 +18,9 @@ const LocationCategories = {
     },
   },
 
+  //---------------------------------------------------------------------------------------------------------------
+  // findOne method in LocationCategories API. This will return a Category (province) based on id
+  //---------------------------------------------------------------------------------------------------------------
   findOne: {
     auth: {
       strategy: "jwt",
@@ -31,6 +38,10 @@ const LocationCategories = {
     },
   },
 
+  //---------------------------------------------------------------------------------------------------------------
+  // create method in LocationCategories API. This will create a new location Category in DB. Takes in
+  // locationCategory object in payload.
+  //---------------------------------------------------------------------------------------------------------------
   create: {
     auth: {
       strategy: "jwt",
@@ -45,6 +56,9 @@ const LocationCategories = {
     }
   },
 
+  //---------------------------------------------------------------------------------------------------------------
+  // deleteOne method in LocationCategories API. This will delete a single location Category based on id.
+  //---------------------------------------------------------------------------------------------------------------
   deleteOne: {
     auth: {
       strategy: "jwt",
@@ -58,6 +72,9 @@ const LocationCategories = {
     },
   },
 
+  //---------------------------------------------------------------------------------------------------------------
+  // deleteOne method in LocationCategories API. This will delete all location Categories Use with care!
+  //---------------------------------------------------------------------------------------------------------------
   deleteAll: {
     auth: {
       strategy: "jwt",

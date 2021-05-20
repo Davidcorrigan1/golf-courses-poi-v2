@@ -14,6 +14,7 @@ suite("golfPOI API tests", function () {
   let golfPOIs = fixtures.golfPOIs;
   let newGolfPOI = fixtures.newGolfPOI;
   let newCategory = fixtures.newLocationCategory;
+  let newCategory2 = fixtures.newLocationCategory2;
   let newUser = fixtures.newUser;
   let authUser = fixtures.authUser;
   let updatedCategory = fixtures.updateLocationCategory;
@@ -147,28 +148,57 @@ suite("golfPOI API tests", function () {
     const allGolfPOIs = await golfPOIService.getGolfPOIs();
     assert.equal(allGolfPOIs.length, 0);
   });
-/*
-  test("Uploading image", async function () {
+
+  test("Delete all GolfPOIs", async function () {
     const returnedUser = await golfPOIService.createUser(newUser);
     newCategory.lastUpdatedBy = returnedUser._id;
-    const returnedCategory = await golfPOIService.createLocationCategory(newCategory);
-    newGolfPOI.category = returnedCategory._id;
-    newGolfPOI.lastUpdatedBy = returnedUser._id;
+    let category = await golfPOIService.createLocationCategory(newCategory);
 
-    const returnedGolfPOI = await golfPOIService.createPOI(newGolfPOI);
+    for (let golfPOI of golfPOIs) {
+      newGolfPOI.category = category._id;
+      newGolfPOI.lastUpdatedBy = returnedUser._id;
+      await golfPOIService.createPOI(newGolfPOI);
+    }
+    let allGolfPOIs = await golfPOIService.getGolfPOIs();
+    assert.equal(allGolfPOIs.length, golfPOIs.length);
 
-    await readFile('./public/temp.img', imagefile);
+    await golfPOIService.deleteAllGolfPOIs();
 
-    const testImage = await ImageStore.getCourseImages(fixtures.relatedImages[0]);
+    allGolfPOIs = await golfPOIService.getGolfPOIs();
+    assert.equal(allGolfPOIs.length, 0);
+  });
 
-    const updatedCourse = await golfPOIService.uploadImage(returnedGolfPOI._id, testImage);
+  test("Find GolfPOIs by category", async function () {
+    const returnedUser = await golfPOIService.createUser(newUser);
+    newCategory.lastUpdatedBy = returnedUser._id;
+    let category = await golfPOIService.createLocationCategory(newCategory);
 
-    assert(_.some(updatedCourse, newGolfPOI), "Returned course must be the same as updated course");
+    for (let golfPOI of golfPOIs) {
+      newGolfPOI.category = category._id;
+      newGolfPOI.lastUpdatedBy = returnedUser._id;
+      await golfPOIService.createPOI(newGolfPOI);
+    }
+    let allGolfPOIs = await golfPOIService.getGolfPOIByCategory(category._id);
 
-
+    assert.equal(allGolfPOIs.length, golfPOIs.length);
 
   });
 
- */
+  test("Find GolfPOIs by category - None found", async function () {
+    const returnedUser = await golfPOIService.createUser(newUser);
+    newCategory.lastUpdatedBy = returnedUser._id;
+    let category = await golfPOIService.createLocationCategory(newCategory);
+    let category2 = await golfPOIService.createLocationCategory(newCategory2);
+
+    for (let golfPOI of golfPOIs) {
+      newGolfPOI.category = category._id;
+      newGolfPOI.lastUpdatedBy = returnedUser._id;
+      await golfPOIService.createPOI(newGolfPOI);
+    }
+    let allGolfPOIs = await golfPOIService.getGolfPOIByCategory(category2._id);
+
+    assert.equal(allGolfPOIs.length, 0);
+
+  });
 
 });
