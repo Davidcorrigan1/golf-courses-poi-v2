@@ -2,7 +2,7 @@
 
 const Joi = require('@hapi/joi');
 
-const createPOISchema = Joi.object().keys({
+const CreatePOISchema = Joi.object().keys({
   _id: Joi.optional(),
   courseName: Joi.string()
     .required()
@@ -24,4 +24,4 @@ const createPOISchema = Joi.object().keys({
   })
 });
 
-module.exports = createPOISchema;
+module.exports = CreatePOISchema;
