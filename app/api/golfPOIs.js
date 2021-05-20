@@ -2,8 +2,8 @@
 
 const GolfPOI = require('../models/golfPOI');
 const LocationCategory = require('../models/locationCategory');
-const CreatePOISchema = require('../validation/CreatePOISchema');
-const UpdatePOISchema = require('../validation/UpdatePOISchema');
+const CreatePOISchema = require('../validation/createPOISchema');
+const UpdatePOISchema = require('../validation/updatePOISchema');
 const sanitizeHtml = require('sanitize-html');
 const User = require('../models/user');
 const Boom = require("@hapi/boom");
