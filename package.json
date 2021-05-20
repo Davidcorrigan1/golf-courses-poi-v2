@@ -16,6 +16,7 @@
     "@hapi/inert": "^6.0.3",
     "@hapi/joi": "^17.1.1",
     "@hapi/vision": "^6.0.1",
+    "axios": "^0.21.1",
     "ba64": "^3.0.9",
     "bcrypt": "^5.0.1",
     "cloudinary": "^1.25.0",
@@ -29,7 +30,6 @@
     "sanitize-html": "^2.3.3"
   },
   "devDependencies": {
-    "axios": "^0.21.1",
     "chai": "^4.3.4",
     "mocha": "^8.3.2",
     "nyc": "^15.1.0",
