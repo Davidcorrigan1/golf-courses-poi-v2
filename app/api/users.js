@@ -2,8 +2,8 @@
 
 const Joi = require('@hapi/joi');
 const User = require('../models/user');
-const CreateUserSchema = require('../validation/CreateuserSchema');
-const UpdateUserSchema = require('../validation/UpdateUserSchema');
+const CreateUserSchema = require('../validation/createPOISchema');
+const UpdateUserSchema = require('../validation/updateUserSchema');
 const Boom = require("@hapi/boom");
 const utils = require('./utils.js');
 const bcrypt = require("bcrypt");          //bcrypt package use for salt and hashing
