@@ -2,7 +2,7 @@
 
 const Joi = require('@hapi/joi');
 const User = require('../models/user');
-const CreateUserSchema = require('../validation/createPOISchema');
+const CreateUserSchema = require('../validation/createUserSchema');
 const UpdateUserSchema = require('../validation/updateUserSchema');
 const Boom = require("@hapi/boom");
 const utils = require('./utils.js');
@@ -106,6 +106,7 @@ const Users = {
       try {
         await CreateUserSchema.validateAsync(request.payload, {abortEarly: false});
       } catch (error) {
+        console.log(error)
         let message = error.details[0].message;
         return Boom.badRequest(message);
       }
